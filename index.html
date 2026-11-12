@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Descobertas | Find It | Store</title>
+<meta name="description" content="As descobertas da Find It, separadas por categoria e por loja. Menos tempo pesquisando. Mais tempo aproveitando.">
+<meta name="theme-color" content="#0C0D1D">
+<link rel="icon" type="image/png" href="icone.png">
+<link rel="apple-touch-icon" href="icone.png">
+<link rel="stylesheet" href="estilo.css">
+<link rel="stylesheet" href="vitrine.css">
+</head>
+<body class="vitrine">
+
+<p class="faixa-aviso">A Find It pesquisa e compara produtos para você. Somos novos por aqui. Comprando pelos nossos links, você ajuda a Find It a crescer e a trazer mais comparações de produtos que valem o preço.</p>
+
+<div class="pagina larga">
+
+  <header class="topo topo-vitrine">
+    <a class="marca" href="./">
+      <img src="icone.png" alt="" width="48" height="48">
+      <span>Find It | Store</span>
+    </a>
+    <form class="busca" role="search" id="busca">
+      <label for="campo-busca" class="so-leitor">Buscar uma descoberta</label>
+      <input id="campo-busca" type="search" name="q" autocomplete="off"
+             placeholder="Nome ou nº da descoberta">
+    </form>
+  </header>
+
+  <main>
+    <h1 class="titulo-vitrine">Nossas <span class="destaque">descobertas</span></h1>
+
+    <section class="filtros" aria-label="Filtros">
+      <div class="linha-filtros">
+        <label class="seletor">
+          <span>Loja</span>
+          <select id="filtro-loja"></select>
+        </label>
+        <label class="seletor">
+          <span>Ordenar</span>
+          <select id="filtro-ordem"></select>
+        </label>
+      </div>
+      <div class="pilulas" id="pilulas-categoria" aria-label="Categorias"></div>
+      <div class="pilulas sub" id="pilulas-sub" aria-label="Subcategorias"></div>
+    </section>
+
+    <p class="contagem" id="contagem" aria-live="polite"></p>
+
+    <ul class="grade" id="grade"></ul>
+
+    <p class="vazio" id="vazio" hidden>
+      Nenhuma descoberta com essa busca. Tente outra palavra ou digite o nº da descoberta que aparece no vídeo.
+    </p>
+
+    <div class="mais">
+      <button type="button" class="botao-contorno" id="carregar-mais" hidden>Carregar mais descobertas</button>
+    </div>
+  </main>
+
+  <footer class="rodape">
+    <p>A Find It não vende nem entrega os produtos. A compra de cada produto é feita no site oficial da loja.</p>
+    <p>Contato: mensagem direta no Instagram <a href="https://www.instagram.com/find.it.br/">@find.it.br</a></p>
+    <p>© 2026 Find It | Store</p>
+  </footer>
+
+</div>
+<script src="vitrine.js"></script>
+</body>
+</html>

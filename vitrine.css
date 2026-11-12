@@ -1,0 +1,213 @@
+/* Vitrine da Find It: lista de descobertas e página de cada descoberta.
+   Vem depois de estilo.css e usa as mesmas cores e a mesma fonte. A lista é mais larga
+   que as páginas de texto (4 colunas de 282 px no computador, 2 no celular, pesquisa 19). */
+
+.pagina.larga { max-width: 1200px; }
+
+.so-leitor {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* Faixa de publicidade no alto de toda página da vitrine. */
+.faixa-aviso {
+  margin: 0;
+  padding: 8px 16px;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--texto-suave);
+  background: var(--superficie);
+  border-bottom: 1px solid rgba(134, 212, 234, 0.15);
+}
+
+/* Topo: marca e busca, a busca sempre à vista. */
+.topo-vitrine { padding: 16px 0 8px; gap: 12px; }
+.busca { width: min(640px, 100%); }
+.busca input {
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: 1px solid rgba(134, 212, 234, 0.35);
+  background: var(--superficie);
+  color: var(--titulo);
+  font: inherit;
+  font-size: 16px;
+  text-align: center;
+}
+.busca input::placeholder { color: var(--texto-suave); }
+.busca input:focus-visible { outline: 2px solid var(--rosa); outline-offset: 2px; border-color: transparent; }
+
+.titulo-vitrine { font-size: clamp(30px, 6vw, 48px); line-height: 1.1; margin: 16px 0; }
+.titulo-vitrine .destaque { color: var(--roxo); }
+
+/* Filtros */
+.filtros { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-bottom: 8px; }
+.linha-filtros { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.seletor { display: flex; align-items: center; gap: 8px; font-size: 15px; color: var(--texto-suave); }
+.seletor select {
+  min-height: 44px;
+  padding: 8px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(134, 212, 234, 0.35);
+  background: var(--superficie);
+  color: var(--titulo);
+  font: inherit;
+  font-size: 15px;
+}
+.seletor select:focus-visible { outline: 2px solid var(--rosa); outline-offset: 2px; }
+
+.pilulas { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.pilulas[hidden] { display: none; }
+.pilula {
+  min-height: 44px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(242, 136, 242, 0.5);
+  background: transparent;
+  color: var(--rosa);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: color var(--suave), border-color var(--suave), background-color var(--suave);
+}
+.pilula:hover, .pilula:focus-visible { color: var(--roxo); border-color: var(--roxo); }
+.pilula:focus-visible { outline: 2px solid var(--rosa); outline-offset: 2px; }
+.pilula[aria-pressed="true"] { background: var(--degrade); color: var(--fundo); border-color: transparent; }
+.pilulas.sub .pilula { font-size: 14px; min-height: 44px; }
+
+.contagem { font-size: 15px; color: var(--texto-suave); margin: 8px 0 16px; }
+.vazio { max-width: 520px; margin: 24px auto; }
+
+/* Grade: 2 colunas no celular, até 4 no computador. */
+.grade {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+@media (min-width: 768px) { .grade { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; } }
+@media (min-width: 1100px) { .grade { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+
+.cartao-produto {
+  display: flex;
+  flex-direction: column;
+  background: var(--superficie);
+  border: 1px solid rgba(134, 212, 234, 0.18);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: border-color var(--suave), box-shadow var(--suave), transform var(--suave);
+}
+.cartao-produto:hover { border-color: rgba(134, 212, 234, 0.5); box-shadow: var(--brilho-ciano); transform: translateY(-3px); }
+
+/* Foto do fabricante em fundo branco: o quadro branco evita a borda escura em volta. */
+.cartao-produto .foto { display: block; aspect-ratio: 1 / 1; background: #fff; }
+.cartao-produto .foto img { width: 100%; height: 100%; object-fit: contain; display: block; }
+
+.cartao-produto .corpo { display: flex; flex-direction: column; gap: 6px; padding: 12px; flex: 1; }
+.etiquetas { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin: 0; }
+.etiqueta {
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.3;
+  padding: 3px 8px;
+  border-radius: 999px;
+  color: var(--ciano);
+  border: 1px solid rgba(134, 212, 234, 0.4);
+}
+.etiqueta.rascunho { color: var(--texto-suave); border-color: rgba(162, 175, 187, 0.4); }
+
+.cartao-produto h2 { font-size: 16px; line-height: 1.3; margin: 0; transform: none; }
+.cartao-produto h2 a {
+  color: var(--titulo);
+  text-decoration: none;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.cartao-produto h2 a:hover, .cartao-produto h2 a:focus-visible { color: var(--roxo); }
+
+.cartao-produto .resumo {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.cartao-produto .info { margin: 0; font-size: 13px; color: var(--texto-suave); }
+
+/* Botão da loja: pílula de 44 px, encostado no pé do cartão. */
+.botao-loja {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: var(--degrade);
+  color: var(--fundo);
+  font-weight: 900;
+  font-size: 14px;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow var(--suave), transform var(--suave), filter var(--suave);
+}
+.botao-loja:hover, .botao-loja:focus-visible { color: var(--fundo); box-shadow: var(--brilho-rosa); filter: brightness(1.06); }
+.botao-loja:active { transform: scale(0.97); transition-duration: 0.1s; }
+
+.mais { margin: 24px 0 0; }
+.botao-contorno {
+  min-height: 48px;
+  padding: 10px 28px;
+  border-radius: 999px;
+  border: 1px solid rgba(242, 136, 242, 0.5);
+  background: transparent;
+  color: var(--rosa);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  transition: color var(--suave), border-color var(--suave), box-shadow var(--suave);
+}
+.botao-contorno:hover, .botao-contorno:focus-visible { color: var(--roxo); border-color: var(--roxo); box-shadow: var(--brilho-roxo); }
+.botao-contorno[hidden] { display: none; }
+
+/* Página de cada descoberta */
+html { scroll-padding-bottom: 88px; }
+.voltar { display: inline-block; margin: 8px 0 16px; font-weight: 700; }
+.descoberta { display: grid; gap: 24px; }
+@media (min-width: 860px) { .descoberta { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; } }
+.descoberta .foto-grande { background: #fff; border-radius: 16px; overflow: hidden; aspect-ratio: 1 / 1; }
+.descoberta .foto-grande img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.descoberta h1 { font-size: clamp(26px, 5vw, 38px); line-height: 1.15; margin: 8px 0 16px; }
+.descoberta h2 { font-size: clamp(20px, 3.5vw, 26px); margin: 32px 0 12px; color: var(--ciano); }
+.descoberta .por-que { margin: 0; padding: 0; list-style: none; }
+.descoberta .por-que li { margin-bottom: 6px; }
+.descoberta .atencao {
+  margin: 16px 0;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(242, 136, 242, 0.5);
+  background: rgba(242, 136, 242, 0.06);
+}
+.descoberta .atencao p { margin: 0; }
+.descoberta .atencao strong { color: var(--titulo); }
+.comprar { display: flex; flex-direction: column; gap: 10px; margin: 16px 0 8px; }
+.comprar .botao-loja { font-size: 16px; min-height: 48px; }
+.descoberta .dado { font-size: 15px; color: var(--texto-suave); margin: 8px 0; }
+
+.especificacoes { width: 100%; border-collapse: collapse; font-size: 15px; }
+/* Eixo central também na ficha: nome à direita do eixo, valor à esquerda. */
+.especificacoes th, .especificacoes td { padding: 8px 10px; border-bottom: 1px solid rgba(134, 212, 234, 0.12); vertical-align: top; }
+.especificacoes th { color: var(--titulo); font-weight: 700; width: 50%; text-align: right; }
+.especificacoes td { text-align: left; }
+
+.parecidos { margin-top: 48px; }
+.parecidos h2 { color: var(--ciano); }

@@ -1,0 +1,230 @@
+/* Find It: páginas públicas.
+   As cores partem de Design System/tokens.json, suavizadas para leitura em tela escura:
+   fundo azul-noite em vez de preto puro, texto gelo um pouco abaixo do branco e neon com
+   menos saturação (Material Design: superfície #121212 e texto em 87%; Toptal e Atmos:
+   cor saturada "vibra" sobre fundo escuro). Contrastes medidos sobre --fundo:
+   texto 13,0:1 · títulos 14,5:1 · rosa 8,8:1 · ciano 11,6:1 · roxo 5,8:1 · nota 8,6:1.
+   Regras do César (12/11/2026): todo link é rosa e vira roxo ao passar o mouse (roxo 5,8:1);
+   ciano fica só em títulos e detalhes; tudo fica no mesmo eixo central. */
+@font-face {
+  font-family: "Exo";
+  src: url("Exo-Italic-Variable.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  --fundo: #0C0D1D;
+  --superficie: #15162E;
+  --texto: #C6D7E2;
+  --titulo: #D1E2ED;
+  --texto-suave: #A2AFBB;
+  --ciano: #86D4EA;
+  --roxo: #C067E9;
+  --rosa: #F288F2;
+  --azul-profundo: #020182;
+  --degrade: linear-gradient(135deg, var(--ciano), var(--roxo) 55%, var(--rosa));
+  --brilho-ciano: 0 0 16px rgba(134, 212, 234, 0.3);
+  --brilho-rosa: 0 0 16px rgba(242, 136, 242, 0.3);
+  --brilho-roxo: 0 0 16px rgba(192, 103, 233, 0.35);
+  --suave: 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* { box-sizing: border-box; }
+
+html { background: var(--fundo); scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(ellipse 70% 40% at 50% 0%, rgba(2, 1, 130, 0.3), transparent 70%),
+    var(--fundo);
+  color: var(--texto);
+  font-family: "Exo", system-ui, sans-serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.65;
+  letter-spacing: 0.01em;
+  text-align: center;
+  overflow-wrap: break-word;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Links: sempre rosa e sublinhados, para não depender só da cor (WCAG 1.4.1). */
+a {
+  color: var(--rosa);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+  text-decoration-color: rgba(242, 136, 242, 0.55);
+  transition: color var(--suave), text-decoration-color var(--suave);
+}
+a:hover, a:focus-visible { color: var(--roxo); text-decoration-color: var(--roxo); }
+a:focus-visible { outline: 2px solid var(--rosa); outline-offset: 4px; border-radius: 6px; }
+
+.pagina { max-width: 880px; margin: 0 auto; padding: 0 16px; }
+
+/* Topo: marca e menu um embaixo do outro, os dois no eixo central. */
+.topo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 24px 0;
+}
+.topo .marca { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--titulo); }
+.topo .marca:hover { color: var(--titulo); }
+.topo .marca img { width: 48px; height: 48px; border-radius: 50%; transition: box-shadow var(--suave); }
+.topo .marca:hover img { box-shadow: var(--brilho-ciano); }
+.topo .marca span { font-weight: 900; font-size: 20px; }
+.topo nav a { font-weight: 700; font-size: 16px; }
+
+/* Abertura */
+.abertura { padding: 32px 0 24px; }
+.abertura .logo {
+  width: min(320px, 72vw);
+  height: auto;
+  display: block;
+  margin: 0 auto 32px;
+  border-radius: 50%;
+}
+h1, h2, h3 { color: var(--titulo); font-weight: 900; font-style: italic; transform: skewX(-8deg); }
+.abertura h1 { font-size: clamp(36px, 8vw, 64px); line-height: 1.05; margin: 0 0 24px; }
+.abertura h1 .destaque { color: var(--roxo); }
+.abertura .apoio { font-size: clamp(18px, 3.5vw, 22px); max-width: 560px; margin: 0 auto 16px; }
+.junto { white-space: nowrap; }
+.abertura .lema { color: var(--ciano); font-weight: 800; font-size: 18px; margin: 0; }
+
+/* Linha entre blocos: degradê da marca, fina e sem brilho. */
+.linha { height: 1px; border: 0; margin: 48px 0; background: var(--degrade); opacity: 0.6; }
+
+h2 { font-size: clamp(26px, 5vw, 36px); line-height: 1.15; margin: 0 0 24px; }
+h3 { font-size: 22px; margin: 0 0 8px; color: var(--ciano); }
+
+.intro { max-width: 640px; margin: 0 auto 24px; }
+
+/* Cartões: superfície um tom acima do fundo, como pede o Material para dar profundidade. */
+.cartoes { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.cartao {
+  background: var(--superficie);
+  border: 1px solid rgba(134, 212, 234, 0.18);
+  border-radius: 16px;
+  padding: 24px;
+  transition: border-color var(--suave), box-shadow var(--suave), transform var(--suave);
+}
+.cartao:hover { border-color: rgba(134, 212, 234, 0.5); box-shadow: var(--brilho-ciano); transform: translateY(-3px); }
+.cartao p { margin: 0; }
+
+/* Loja oficial */
+.endereco {
+  display: inline-block;
+  margin: 8px 0 24px;
+  padding: 14px 24px;
+  border-radius: 16px;
+  background: var(--superficie);
+  border: 1px solid rgba(242, 136, 242, 0.5);
+  font-weight: 800;
+  font-size: clamp(15px, 3.6vw, 20px);
+  text-decoration: none;
+  color: var(--titulo);
+  transition: border-color var(--suave), box-shadow var(--suave), transform var(--suave), color var(--suave);
+}
+.endereco:hover, .endereco:focus-visible { color: var(--titulo); border-color: var(--roxo); box-shadow: var(--brilho-roxo); transform: translateY(-2px); }
+.endereco small { display: block; font-size: 13px; font-weight: 600; color: var(--rosa); text-decoration: underline; text-underline-offset: 3px; transition: color var(--suave); }
+.endereco:hover small, .endereco:focus-visible small { color: var(--roxo); }
+.aviso { max-width: 640px; margin: 0 auto 16px; }
+.aviso strong { color: var(--titulo); font-weight: 800; }
+.nota { font-size: 15px; color: var(--texto-suave); max-width: 640px; margin: 24px auto 0; }
+
+/* Redes: uma coluna de botões do mesmo tamanho, todos no eixo central. */
+.redes { display: grid; grid-template-columns: min(300px, 100%); justify-content: center; gap: 12px; padding: 0; margin: 0; list-style: none; }
+.redes a {
+  display: block;
+  padding: 10px 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(242, 136, 242, 0.5);
+  color: var(--titulo);
+  font-weight: 800;
+  text-decoration: none;
+  transition: border-color var(--suave), box-shadow var(--suave), transform var(--suave), background-color var(--suave);
+}
+.redes a span { font-weight: 600; color: var(--rosa); transition: color var(--suave); }
+.redes a:hover, .redes a:focus-visible {
+  color: var(--titulo);
+  border-color: var(--roxo);
+  background-color: rgba(192, 103, 233, 0.1);
+  box-shadow: var(--brilho-roxo);
+  transform: translateY(-2px);
+}
+.redes a:hover span, .redes a:focus-visible span { color: var(--roxo); }
+.redes a:active { transform: translateY(0) scale(0.97); transition-duration: 0.1s; }
+
+/* Bloco do publicador */
+.publicador {
+  border-radius: 16px;
+  padding: 32px 24px;
+  border: 1px solid transparent;
+  background-image: linear-gradient(var(--superficie), var(--superficie)), var(--degrade);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+}
+.publicador p { max-width: 640px; margin-left: auto; margin-right: auto; }
+
+.botao {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 12px 26px;
+  border-radius: 999px;
+  background: var(--degrade);
+  color: var(--fundo);
+  font-weight: 900;
+  text-decoration: none;
+  transition: box-shadow var(--suave), transform var(--suave), filter var(--suave);
+}
+.botao:hover, .botao:focus-visible {
+  color: var(--fundo);
+  box-shadow: var(--brilho-rosa);
+  transform: translateY(-2px) scale(1.03);
+  filter: brightness(1.06);
+}
+.botao:active { transform: translateY(0) scale(0.97); transition-duration: 0.1s; }
+
+/* Texto da política */
+.texto { max-width: 680px; margin: 0 auto; }
+.texto h1 { font-size: clamp(30px, 6vw, 48px); line-height: 1.1; margin: 32px 0 8px; }
+.texto .data { color: var(--ciano); margin: 0 0 32px; }
+.texto section { margin-bottom: 40px; }
+.texto h2 { font-size: clamp(22px, 4vw, 28px); margin-bottom: 12px; color: var(--ciano); }
+.texto ul { list-style: none; padding: 0; }
+.texto li { margin-bottom: 8px; }
+.texto .resumo {
+  background: var(--superficie);
+  border: 1px solid rgba(242, 136, 242, 0.4);
+  border-radius: 16px;
+  padding: 20px 24px;
+  margin-bottom: 40px;
+}
+.texto .resumo p { margin: 0 0 8px; }
+.texto .resumo p:last-child { margin: 0; }
+.texto .resumo strong { color: var(--titulo); }
+
+/* Rodapé */
+.rodape {
+  margin-top: 64px;
+  padding: 32px 0 48px;
+  border-top: 1px solid rgba(134, 212, 234, 0.15);
+  font-size: 15px;
+  color: var(--texto-suave);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+.rodape p { margin: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { transition: none !important; }
+}

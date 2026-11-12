@@ -1,0 +1,117 @@
+{
+  "gerado_em": "2026-11-12T16:15:55",
+  "lojas": {
+    "loja-1": {
+      "rotulo": "Loja parceira 1",
+      "mostrar_preco": false,
+      "texto_botao": "Ver preço na loja"
+    }
+  },
+  "categorias": {
+    "ar-e-ventilacao": {
+      "nome": "Ar e ventilação",
+      "sub": {
+        "ventiladores": "Ventiladores"
+      }
+    }
+  },
+  "produtos": [
+    {
+      "numero": 1,
+      "slug": "ventilador-mondial-super-power-40cm",
+      "nome": "Ventilador de mesa Mondial Super Power 40 cm",
+      "marca": "Mondial",
+      "loja": "loja-1",
+      "categoria": "ar-e-ventilacao",
+      "subcategoria": "ventiladores",
+      "resumo": "6 pás, 3 velocidades e grade que sai para limpar.",
+      "por_que": [
+        "Nota 4,74 de 5, com mais de 50 mil avaliações na página da loja.",
+        "A grade da frente sai, então dá para limpar.",
+        "Gira para os lados e inclina para cima e para baixo."
+      ],
+      "descricao": "Ventilador de mesa de 40 cm, com 6 pás, 3 velocidades e 140 W (o gasto de energia). Ele gira para os lados e inclina na vertical. A grade da frente sai para limpar, a alça ajuda a levar de um cômodo para outro e a base não escorrega. Não espere silêncio: um teste de uso achou o barulho acima do que a marca promete.",
+      "atencao": [
+        "Não é bivolt. Escolha 110V ou 220V antes de comprar."
+      ],
+      "especificacoes": [
+        [
+          "Marca",
+          "Mondial"
+        ],
+        [
+          "Modelo",
+          "VSP-40-B"
+        ],
+        [
+          "Tamanho da hélice",
+          "40 cm"
+        ],
+        [
+          "Pás",
+          "6"
+        ],
+        [
+          "Velocidades",
+          "3"
+        ],
+        [
+          "Potência",
+          "140 W"
+        ],
+        [
+          "Voltagem",
+          "110V ou 220V (não é bivolt)"
+        ],
+        [
+          "Tomada",
+          "10 A"
+        ],
+        [
+          "Material",
+          "Polipropileno"
+        ],
+        [
+          "Cor",
+          "Preto e prata"
+        ],
+        [
+          "Peso",
+          "2,45 kg"
+        ],
+        [
+          "Tamanho",
+          "45 cm de largura, 62,5 cm de altura e 32 cm de profundidade"
+        ],
+        [
+          "Garantia",
+          "1 ano"
+        ],
+        [
+          "Na caixa",
+          "Ventilador e manual"
+        ]
+      ],
+      "links": [
+        {
+          "rotulo": "110V",
+          "url": "https://www.magazinevoce.com.br/magazinefindit/ventilador-mondial-super-power-40cm-6-pas-3-velocidades-140w/p/231203900/ar/arvm/"
+        },
+        {
+          "rotulo": "220V",
+          "url": "https://www.magazinevoce.com.br/magazinefindit/ventilador-mondial-super-power-40cm-6-pas-3-velocidades-140w/p/231204000/ar/arvm/"
+        }
+      ],
+      "preco": null,
+      "avaliacao": {
+        "nota": 4.74,
+        "total": 50170,
+        "data": "2026-11-11"
+      },
+      "foto": "fotos/001-ventilador-mondial-super-power-40cm.jpg",
+      "video": null,
+      "entrada": null,
+      "status": "rascunho"
+    }
+  ]
+}
