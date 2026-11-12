@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-11-12T16:15:55",
+  "gerado_em": "2026-11-12T20:11:09",
   "lojas": {
     "loja-1": {
       "rotulo": "Loja parceira 1",
@@ -21,6 +21,7 @@
       "slug": "ventilador-mondial-super-power-40cm",
       "nome": "Ventilador de mesa Mondial Super Power 40 cm",
       "marca": "Mondial",
+      "modelo": "VSP-40-B",
       "loja": "loja-1",
       "categoria": "ar-e-ventilacao",
       "subcategoria": "ventiladores",
@@ -30,9 +31,18 @@
         "A grade da frente sai, então dá para limpar.",
         "Gira para os lados e inclina para cima e para baixo."
       ],
-      "descricao": "Ventilador de mesa de 40 cm, com 6 pás, 3 velocidades e 140 W (o gasto de energia). Ele gira para os lados e inclina na vertical. A grade da frente sai para limpar, a alça ajuda a levar de um cômodo para outro e a base não escorrega. Não espere silêncio: um teste de uso achou o barulho acima do que a marca promete.",
+      "descricao": "Ventilador de mesa de 40 cm, com 6 pás e 140 W de potência (o gasto de energia). Quem comprou elogia o vento forte, as 3 velocidades bem diferentes e o custo-benefício.",
       "atencao": [
         "Não é bivolt. Escolha 110V ou 220V antes de comprar."
+      ],
+      "recursos": [
+        "Gira para os lados sozinho. Para mandar o vento num ponto só, trave o botão de cima.",
+        "A cabeça inclina para cima e para baixo.",
+        "3 velocidades: alta, média e baixa. A Mondial chama de Máxima Turbo, Média Conforto e Mínima Silencioso.",
+        "A grade da frente e a hélice saem para lavar.",
+        "Alça atrás, para levar de um cômodo para outro.",
+        "Depois do uso, o fio fica guardado num encaixe no próprio ventilador.",
+        "A base não escorrega na mesa."
       ],
       "especificacoes": [
         [
@@ -44,8 +54,16 @@
           "VSP-40-B"
         ],
         [
+          "Tipo",
+          "Ventilador de mesa"
+        ],
+        [
           "Tamanho da hélice",
           "40 cm"
+        ],
+        [
+          "Tamanho da grade",
+          "45 cm"
         ],
         [
           "Pás",
@@ -53,7 +71,7 @@
         ],
         [
           "Velocidades",
-          "3"
+          "3 (alta, média e baixa)"
         ],
         [
           "Potência",
@@ -64,12 +82,20 @@
           "110V ou 220V (não é bivolt)"
         ],
         [
-          "Tomada",
-          "10 A"
+          "Plugue",
+          "10 A (pinos finos)"
+        ],
+        [
+          "Consumo de energia",
+          "4,12 kWh (unidade da conta de luz) por mês, usando 1 hora por dia na velocidade alta. Dado da etiqueta do Inmetro da versão 110V."
+        ],
+        [
+          "Vazão de ar",
+          "1,09 m³ por segundo (quanto ar ele move), na versão 110V"
         ],
         [
           "Material",
-          "Polipropileno"
+          "Polipropileno (um tipo de plástico)"
         ],
         [
           "Cor",
@@ -82,16 +108,14 @@
         [
           "Tamanho",
           "45 cm de largura, 62,5 cm de altura e 32 cm de profundidade"
-        ],
-        [
-          "Garantia",
-          "1 ano"
-        ],
-        [
-          "Na caixa",
-          "Ventilador e manual"
         ]
       ],
+      "na_caixa": [
+        "1 ventilador",
+        "Manual de instruções"
+      ],
+      "garantia": "1 ano, dada pela Mondial",
+      "manual": "https://manuais.emondial.com/Manual-VSP-40-B.pdf",
       "links": [
         {
           "rotulo": "110V",
@@ -108,7 +132,33 @@
         "total": 50170,
         "data": "2026-11-11"
       },
-      "foto": "fotos/001-ventilador-mondial-super-power-40cm.jpg",
+      "foto": "fotos/001-ventilador-mondial-super-power-40cm-1.jpg",
+      "fotos": [
+        {
+          "src": "fotos/001-ventilador-mondial-super-power-40cm-1.jpg",
+          "alt": "Ventilador Mondial preto de 6 pás, visto de frente"
+        },
+        {
+          "src": "fotos/001-ventilador-mondial-super-power-40cm-2.jpg",
+          "alt": "Ventilador ligado, com a hélice de 6 pás e 40 cm"
+        },
+        {
+          "src": "fotos/001-ventilador-mondial-super-power-40cm-3.jpg",
+          "alt": "Ventilador de lado, com a cabeça inclinada para cima e para baixo"
+        },
+        {
+          "src": "fotos/001-ventilador-mondial-super-power-40cm-4.jpg",
+          "alt": "Ventilador de lado, com o botão de cima que trava o giro"
+        },
+        {
+          "src": "fotos/001-ventilador-mondial-super-power-40cm-5.jpg",
+          "alt": "Detalhe da alça atrás e do botão das 3 velocidades"
+        },
+        {
+          "src": "fotos/001-ventilador-mondial-super-power-40cm-6.jpg",
+          "alt": "Ventilador com as medidas marcadas na foto"
+        }
+      ],
       "video": null,
       "entrada": null,
       "status": "rascunho"
