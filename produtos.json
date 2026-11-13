@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-11-12T20:11:09",
+  "gerado_em": "2026-11-13T17:05:06",
   "lojas": {
     "loja-1": {
       "rotulo": "Loja parceira 1",
@@ -116,6 +116,7 @@
       ],
       "garantia": "1 ano, dada pela Mondial",
       "manual": "https://manuais.emondial.com/Manual-VSP-40-B.pdf",
+      "pagina_fabricante": "https://www.mondial.com.br/ventilador-de-mesa-mondial-6-pas-vsp-40-b/p",
       "links": [
         {
           "rotulo": "110V",

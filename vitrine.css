@@ -182,8 +182,52 @@
 /* Página de cada descoberta */
 html { scroll-padding-bottom: 88px; }
 .voltar { display: inline-block; margin: 8px 0 16px; font-weight: 700; }
-.descoberta { display: grid; gap: 24px; }
-@media (min-width: 860px) { .descoberta { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; } }
+/* Estrutura no modelo da Amazon (pedido do César em 13/11/2026).
+   Celular: título, fotos, compra, informações. Computador: fotos | informações | compra,
+   e os detalhes embaixo na largura toda. Texto alinhado à esquerda, como na Amazon. */
+.descoberta, .d-detalhes { text-align: left; }
+.descoberta {
+  display: grid; gap: 16px 32px;
+  grid-template-areas: "cabeca" "fotos" "compra" "info";
+}
+.d-cabeca { grid-area: cabeca; } .d-fotos { grid-area: fotos; min-width: 0; }
+.d-info { grid-area: info; } .d-compra { grid-area: compra; }
+.d-cabeca .etiquetas { justify-content: flex-start; }
+.marca-link { margin: 4px 0; font-size: 15px; }
+.d-cabeca h1 { margin: 4px 0 8px; }
+.d-compra {
+  padding: 16px; border: 1px solid rgba(134, 212, 234, 0.25); border-radius: 12px;
+  background: var(--superficie); align-self: start;
+}
+.d-compra .atencao { margin-top: 0; }
+.sobre-item { margin: 0; padding-left: 20px; }
+.sobre-item li { margin-bottom: 8px; }
+.d-detalhes { margin-top: 32px; border-top: 1px solid rgba(134, 212, 234, 0.2); }
+.d-detalhes h2 { color: var(--ciano); font-size: clamp(20px, 3.5vw, 26px); margin: 32px 0 12px; }
+.d-detalhes .especificacoes { max-width: 900px; }
+.especificacoes.resumo { margin: 8px 0; }
+/* Tela média (painel lateral, tablet): já fica foto à esquerda e descritivo à direita. */
+@media (min-width: 640px) and (max-width: 999.98px) {
+  .descoberta {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas: "fotos cabeca" "fotos compra" "info info";
+    grid-template-rows: auto 1fr;
+    align-items: start;
+  }
+}
+@media (min-width: 1000px) {
+  .descoberta {
+    grid-template-columns: minmax(0, 5fr) minmax(0, 4fr) minmax(240px, 3fr);
+    grid-template-areas: "fotos cabeca compra" "fotos info compra";
+    grid-template-rows: auto 1fr;
+    align-items: start;
+  }
+  /* Miniaturas em coluna, à esquerda da foto grande, como na Amazon. */
+  .d-fotos .galeria { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 12px; }
+  .d-fotos .galeria-fotos { grid-column: 2; grid-row: 1; }
+  .d-fotos .galeria-miniaturas { grid-column: 1; grid-row: 1; flex-direction: column; flex-wrap: nowrap; margin: 0; }
+  .d-compra { position: sticky; top: 16px; }
+}
 /* Galeria: no celular arrasta para o lado e mostra bolinhas; a partir de
    860 px mostra miniaturas de 72 px (pesquisa 19). */
 .galeria { min-width: 0; }
@@ -244,10 +288,44 @@ html { scroll-padding-bottom: 88px; }
 .descoberta .dado { font-size: 15px; color: var(--texto-suave); margin: 8px 0; }
 
 .especificacoes { width: 100%; border-collapse: collapse; font-size: 15px; }
-/* Eixo central também na ficha: nome à direita do eixo, valor à esquerda. */
+/* Ficha em tabela de duas colunas, alinhada à esquerda (modelo Amazon). */
 .especificacoes th, .especificacoes td { padding: 8px 10px; border-bottom: 1px solid rgba(134, 212, 234, 0.12); vertical-align: top; }
-.especificacoes th { color: var(--titulo); font-weight: 700; width: 50%; text-align: right; }
+.especificacoes th { color: var(--titulo); font-weight: 600; width: 40%; text-align: left; }
 .especificacoes td { text-align: left; }
 
 .parecidos { margin-top: 48px; }
 .parecidos h2 { color: var(--ciano); }
+
+/* Títulos com peso médio, sem negrito pesado (pedido do César em 13/11/2026). */
+h1, h2, h3 { font-weight: 600; }
+.topo .marca span { font-weight: 600; }
+.topo nav a { font-weight: 600; }
+
+/* Letra reta (sem inclinação) em todo o site da vitrine (pedido do César em 13/11/2026). */
+@font-face {
+  font-family: "Exo";
+  src: url("Exo-Variable.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+body, h1, h2, h3 { font-style: normal; }
+h1, h2, h3 { transform: none; }
+
+/* Letras um pouco mais claras, mudança leve (pedido do César em 13/11/2026). */
+:root {
+  --titulo: #E2ECF3;
+  --texto: #D8E4EC;
+  --texto-suave: #B6C2CC;
+}
+
+/* Lupa no modelo da Amazon (pedido do César em 13/11/2026). */
+.galeria { position: relative; }
+.lupa-lente, .lupa-painel { display: none; position: absolute; pointer-events: none; }
+.lupa-lente { border: 1px solid var(--ciano); background: rgba(134, 212, 234, 0.18); }
+.lupa-painel {
+  z-index: 20; background-color: #fff; background-repeat: no-repeat;
+  border: 1px solid rgba(134, 212, 234, 0.4); border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+.galeria-fotos { cursor: crosshair; }
