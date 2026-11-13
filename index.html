@@ -23,37 +23,43 @@
       <span>Find It | Store</span>
     </a>
     <form class="busca" role="search" id="busca">
-      <label for="campo-busca" class="so-leitor">Buscar uma descoberta</label>
+      <label for="busca-cat" class="so-leitor">Onde buscar</label>
+      <select id="busca-cat" name="cat"><option value="">Todos</option></select>
+      <label for="campo-busca" class="so-leitor">Buscar</label>
       <input id="campo-busca" type="search" name="q" autocomplete="off"
-             placeholder="Nome ou nº da descoberta">
+             placeholder="Busque por nome, marca, medida ou nº da descoberta">
+      <button type="submit" aria-label="Buscar">⌕</button>
     </form>
   </header>
 
   <main>
     <h1 class="titulo-vitrine">Nossas <span class="destaque">descobertas</span></h1>
 
-    <section class="filtros" aria-label="Filtros">
-      <div class="linha-filtros">
-        <label class="seletor">
-          <span>Loja</span>
-          <select id="filtro-loja"></select>
-        </label>
-        <label class="seletor">
-          <span>Ordenar</span>
-          <select id="filtro-ordem"></select>
-        </label>
-      </div>
+    <section class="filtros" aria-label="Categorias">
       <div class="pilulas" id="pilulas-categoria" aria-label="Categorias"></div>
       <div class="pilulas sub" id="pilulas-sub" aria-label="Subcategorias"></div>
     </section>
 
-    <p class="contagem" id="contagem" aria-live="polite"></p>
+    <div class="barra-resultados">
+      <p class="contagem" id="contagem" aria-live="polite"></p>
+      <label class="seletor">
+        <span>Classificar por</span>
+        <select id="filtro-ordem"></select>
+      </label>
+    </div>
 
-    <ul class="grade" id="grade"></ul>
-
-    <p class="vazio" id="vazio" hidden>
-      Nenhuma descoberta com essa busca. Tente outra palavra ou digite o nº da descoberta que aparece no vídeo.
-    </p>
+    <div class="resultados">
+      <details class="painel-filtros" id="painel-filtros">
+        <summary>Filtros</summary>
+        <div id="facetas"></div>
+      </details>
+      <div>
+        <ul class="grade" id="grade"></ul>
+        <p class="vazio" id="vazio" hidden>
+          Nenhuma descoberta com essa busca. Tente outra palavra ou digite o nº da descoberta que aparece no vídeo.
+        </p>
+      </div>
+    </div>
 
     <div class="mais">
       <button type="button" class="botao-contorno" id="carregar-mais" hidden>Carregar mais descobertas</button>

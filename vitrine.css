@@ -22,21 +22,49 @@
 
 /* Topo: marca e busca, a busca sempre à vista. */
 .topo-vitrine { padding: 16px 0 8px; gap: 12px; }
-.busca { width: min(640px, 100%); }
-.busca input {
-  width: 100%;
+/* Busca no modelo da Amazon: caixa "Todos" à esquerda, campo no meio, lupa à direita. */
+.busca {
+  width: min(720px, 100%);
+  display: flex;
+  align-items: stretch;
   min-height: 48px;
-  padding: 10px 20px;
-  border-radius: 999px;
+  border-radius: 12px;
   border: 1px solid rgba(134, 212, 234, 0.35);
   background: var(--superficie);
+  overflow: hidden;
+}
+.busca:focus-within { outline: 2px solid var(--rosa); outline-offset: 2px; border-color: transparent; }
+.busca select {
+  flex: 0 0 auto;
+  max-width: 40%;
+  padding: 0 10px;
+  border: 0;
+  border-right: 1px solid rgba(134, 212, 234, 0.35);
+  background: rgba(134, 212, 234, 0.08);
+  color: var(--titulo);
+  font: inherit;
+  font-size: 14px;
+}
+.busca input {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 10px 14px;
+  border: 0;
+  background: transparent;
   color: var(--titulo);
   font: inherit;
   font-size: 16px;
-  text-align: center;
 }
+.busca input:focus, .busca select:focus { outline: none; }
 .busca input::placeholder { color: var(--texto-suave); }
-.busca input:focus-visible { outline: 2px solid var(--rosa); outline-offset: 2px; border-color: transparent; }
+.busca button {
+  flex: 0 0 52px;
+  border: 0;
+  background: var(--degrade);
+  color: var(--fundo);
+  font-size: 24px;
+  cursor: pointer;
+}
 
 .titulo-vitrine { font-size: clamp(30px, 6vw, 48px); line-height: 1.1; margin: 16px 0; }
 .titulo-vitrine .destaque { color: var(--roxo); }
@@ -329,3 +357,76 @@ h1, h2, h3 { transform: none; }
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
 }
 .galeria-fotos { cursor: crosshair; }
+
+/* Resultados no modelo da Amazon: contagem e "Classificar por" numa linha,
+   filtros do lado no computador e numa gaveta no celular. */
+.barra-resultados {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 8px 16px; margin: 8px 0 12px; padding: 8px 0;
+  border-bottom: 1px solid rgba(134, 212, 234, 0.15);
+}
+.barra-resultados .contagem { margin: 0; }
+.resultados { display: grid; gap: 16px; }
+.painel-filtros { background: var(--superficie); border-radius: 12px; padding: 4px 16px; text-align: left; }
+.painel-filtros summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; font-weight: 600; color: var(--titulo); }
+.faceta { border: 0; margin: 0 0 16px; padding: 0; }
+.faceta legend { font-weight: 600; color: var(--titulo); margin-bottom: 6px; font-size: 15px; }
+.faceta label { display: flex; align-items: center; gap: 8px; min-height: 36px; font-size: 15px; color: var(--texto); cursor: pointer; }
+.faceta label[hidden] { display: none; }
+.faceta input { width: 18px; height: 18px; accent-color: var(--roxo); }
+@media (min-width: 900px) {
+  .resultados { grid-template-columns: 240px minmax(0, 1fr); align-items: start; }
+  .painel-filtros { background: none; padding: 0; position: sticky; top: 16px; }
+  .painel-filtros summary { display: none; }
+  .resultados .grade { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* Estrelas: 5 cinzas e, por cima, 5 amarelas cortadas na largura da nota. */
+.estrelas { position: relative; display: inline-block; font-size: 16px; line-height: 1; letter-spacing: 1px; color: rgba(255,255,255,0.25); vertical-align: -1px; }
+.estrelas::before { content: "★★★★★"; }
+.estrelas > span { position: absolute; inset: 0 auto 0 0; overflow: hidden; white-space: nowrap; color: #FFB938; }
+.estrelas > span::before { content: "★★★★★"; }
+.nota-linha { display: flex; align-items: center; gap: 6px; margin: 4px 0; font-size: 15px; color: var(--texto-suave); }
+.nota-linha strong { color: var(--titulo); }
+.dado.fonte { font-size: 13px; margin-top: 0; }
+.destaque-curto { margin: 0 0 8px; color: var(--ciano); font-size: 15px; }
+
+/* Preço com data, no cartão e na caixa de compra. */
+.preco-cartao { margin: 6px 0; display: flex; flex-direction: column; gap: 2px; }
+.preco-cartao strong { font-size: 20px; color: var(--titulo); }
+.preco-cartao span { font-size: 13px; color: var(--texto-suave); }
+.preco { margin-bottom: 12px; }
+.preco-valor { font-size: 28px; font-weight: 600; color: var(--titulo); margin: 0; }
+.preco .dado { margin: 4px 0 0; font-size: 14px; }
+
+/* Lista de desejos e compartilhar. */
+.acoes { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0; }
+.botao-icone {
+  min-height: 40px; padding: 6px 14px; border-radius: 999px;
+  border: 1px solid rgba(134, 212, 234, 0.35); background: transparent;
+  color: var(--texto); font: inherit; font-size: 14px; cursor: pointer;
+}
+.botao-icone:hover, .botao-icone:focus-visible { border-color: var(--roxo); color: var(--titulo); }
+.botao-icone[aria-pressed="true"] span { color: var(--rosa); }
+
+/* Variações (cor, voltagem, tamanho). */
+.variacao { margin: 8px 0 12px; }
+.variacao p { margin: 0 0 6px; font-size: 15px; }
+.variacao p span { color: var(--texto-suave); }
+.variacao ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.variacao li { padding: 6px 14px; border-radius: 8px; border: 1px solid rgba(134, 212, 234, 0.35); font-size: 14px; }
+
+/* "Ver mais / Ver menos". */
+.ver-mais { background: none; border: 0; padding: 6px 0; color: var(--ciano); font: inherit; font-size: 14px; cursor: pointer; min-height: 36px; }
+.ver-mais:hover { text-decoration: underline; }
+
+/* "Pesquisar nesta página". */
+.pesquisar-pagina { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 0 0 12px; }
+.pesquisar-pagina input {
+  flex: 1 1 160px; min-height: 40px; padding: 6px 12px; border-radius: 8px;
+  border: 1px solid rgba(134, 212, 234, 0.35); background: var(--superficie); color: var(--titulo); font: inherit; font-size: 15px;
+}
+.pesquisar-pagina button { min-height: 40px; padding: 6px 14px; border-radius: 8px; border: 0; background: var(--degrade); color: var(--fundo); font: inherit; font-size: 14px; cursor: pointer; }
+.pesquisar-resultado { font-size: 13px; color: var(--texto-suave); flex-basis: 100%; }
+mark.achado { background: rgba(255, 185, 56, 0.35); color: inherit; border-radius: 3px; }
+mark.achado.atual { background: #FFB938; color: #0C0D1D; }

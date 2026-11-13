@@ -1,9 +1,9 @@
 {
-  "gerado_em": "2026-11-13T17:05:06",
+  "gerado_em": "2026-11-13T17:20:09",
   "lojas": {
     "loja-1": {
       "rotulo": "Loja parceira 1",
-      "mostrar_preco": false,
+      "mostrar_preco": true,
       "texto_botao": "Ver preço na loja"
     }
   },
@@ -127,7 +127,10 @@
           "url": "https://www.magazinevoce.com.br/magazinefindit/ventilador-mondial-super-power-40cm-6-pas-3-velocidades-140w/p/231204000/ar/arvm/"
         }
       ],
-      "preco": null,
+      "preco": {
+        "valor": 169.99,
+        "data": "2026-11-11"
+      },
       "avaliacao": {
         "nota": 4.74,
         "total": 50170,
@@ -162,7 +165,40 @@
       ],
       "video": null,
       "entrada": null,
-      "status": "rascunho"
+      "status": "rascunho",
+      "variacoes": [
+        [
+          "Cor",
+          [
+            "Preto e prata"
+          ]
+        ],
+        [
+          "Voltagem",
+          [
+            "110V",
+            "220V"
+          ]
+        ]
+      ],
+      "facetas": {
+        "Marca": [
+          "Mondial"
+        ],
+        "Cor": [
+          "Preto e prata"
+        ],
+        "Voltagem": [
+          "110V",
+          "220V"
+        ],
+        "Potência": [
+          "140 W"
+        ],
+        "Tamanho da hélice": [
+          "40 cm"
+        ]
+      }
     }
   ]
 }
