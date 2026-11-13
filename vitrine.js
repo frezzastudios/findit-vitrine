@@ -203,6 +203,19 @@
     return b;
   }
 
+  function departamento(icone, nome, n, ativa, aoClicar) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "departamento" + (n ? "" : " vazio");
+    b.setAttribute("aria-pressed", ativa ? "true" : "false");
+    b.setAttribute("aria-label", nome + (n ? " (" + n + ")" : " (em breve)"));
+    var i = document.createElement("span"); i.className = "departamento-icone"; i.setAttribute("aria-hidden", "true"); i.textContent = icone || "•";
+    var t = document.createElement("span"); t.className = "departamento-nome"; t.textContent = nome;
+    b.append(i, t);
+    b.addEventListener("click", aoClicar);
+    return b;
+  }
+
   function contar(lista, campo) {
     var c = {};
     lista.forEach(function (p) { c[p[campo]] = (c[p[campo]] || 0) + 1; });
@@ -211,10 +224,11 @@
 
   function montarPilulas(porCategoria) {
     var nCat = contar(dados.produtos, "categoria");
-    el.cats.replaceChildren(pilula("Tudo", !estado.cat, function () { mudar({ cat: "", sub: "" }); }));
+    el.cats.replaceChildren(departamento("✨", "Tudo", dados.produtos.length, !estado.cat, function () { mudar({ cat: "", sub: "" }); }));
+    // Todos os departamentos aparecem, como na Amazon; os vazios ficam apagados até ganhar a primeira descoberta.
     Object.keys(dados.categorias).forEach(function (id) {
-      if (!nCat[id]) return;
-      el.cats.appendChild(pilula(dados.categorias[id].nome + " (" + nCat[id] + ")", estado.cat === id,
+      var c = dados.categorias[id];
+      el.cats.appendChild(departamento(c.icone, c.nome, nCat[id] || 0, estado.cat === id,
         function () { mudar({ cat: id, sub: "" }); }));
     });
     el.subs.replaceChildren();
@@ -355,12 +369,6 @@
     n.className = "etiqueta";
     n.textContent = "Descoberta nº " + numeroComZeros(p.numero);
     etiquetas.appendChild(n);
-    if (p.status === "rascunho") {
-      var r = document.createElement("span");
-      r.className = "etiqueta rascunho";
-      r.textContent = "Rascunho";
-      etiquetas.appendChild(r);
-    }
     corpo.appendChild(etiquetas);
 
     var h2 = document.createElement("h2");
@@ -393,7 +401,12 @@
       var preco = document.createElement("p");
       preco.className = "preco-cartao";
       var valor = document.createElement("strong");
-      valor.textContent = reais(p.preco.valor);
+      var valorLink = document.createElement("a");
+      valorLink.href = p.links[0].url;
+      valorLink.target = "_blank";
+      valorLink.rel = "sponsored noopener";
+      valorLink.textContent = reais(p.preco.valor);
+      valor.appendChild(valorLink);
       preco.appendChild(valor);
       var quando = document.createElement("span");
       quando.textContent = "Último preço visto em " + dataBR(p.preco.data) + " na " + loja.rotulo;
@@ -408,16 +421,11 @@
 
     var botao = document.createElement("a");
     botao.className = "botao-loja";
-    if (p.links.length === 1) {
-      botao.href = p.links[0].url;
-      botao.target = "_blank";
-      botao.rel = "sponsored noopener";
-      botao.textContent = loja.texto_botao + " ↗";
-      botao.setAttribute("aria-label", loja.texto_botao + ": " + p.nome + " (abre outro site)");
-    } else {
-      botao.href = enderecoDoProduto(p) + "#comprar";
-      botao.textContent = "Escolher: " + p.links.map(function (l) { return l.rotulo; }).join(" ou ");
-    }
+    botao.href = p.links[0].url;
+    botao.target = "_blank";
+    botao.rel = "sponsored noopener";
+    botao.textContent = "Comprar ↗";
+    botao.setAttribute("aria-label", "Comprar " + p.nome + " (abre outro site)");
     corpo.appendChild(botao);
 
     li.appendChild(corpo);
@@ -439,6 +447,9 @@
     if (estado.q.trim()) texto += " para “" + estado.q.trim() + "”";
     el.contagem.textContent = texto;
     el.vazio.hidden = total > 0;
+    if (!total) el.vazio.textContent = (estado.cat && !estado.q.trim() && !contar(dados.produtos, "categoria")[estado.cat])
+      ? "Ainda não temos descobertas em " + dados.categorias[estado.cat].nome + ". Em breve."
+      : "Nenhuma descoberta com essa busca. Tente outra palavra ou digite o nº da descoberta que aparece no vídeo.";
     el.mais.hidden = estado.mostrados >= total;
     el._lista = r.lista;
   }

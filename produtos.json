@@ -1,8 +1,8 @@
 {
-  "gerado_em": "2026-11-13T17:20:09",
+  "gerado_em": "2026-11-13T18:39:30",
   "lojas": {
     "loja-1": {
-      "rotulo": "Loja parceira 1",
+      "rotulo": "Loja parceira",
       "mostrar_preco": true,
       "texto_botao": "Ver preço na loja"
     }
@@ -10,8 +10,226 @@
   "categorias": {
     "ar-e-ventilacao": {
       "nome": "Ar e ventilação",
+      "icone": "🌀",
       "sub": {
-        "ventiladores": "Ventiladores"
+        "ventiladores": "Ventiladores",
+        "ar-condicionado": "Ar-condicionado",
+        "climatizadores": "Climatizadores",
+        "aquecedores": "Aquecedores"
+      }
+    },
+    "eletronicos": {
+      "nome": "Eletrônicos",
+      "icone": "📺",
+      "sub": {
+        "tv": "TVs",
+        "audio": "Áudio e fones",
+        "cameras": "Câmeras",
+        "casa-inteligente": "Casa inteligente"
+      }
+    },
+    "celulares": {
+      "nome": "Celulares",
+      "icone": "📱",
+      "sub": {
+        "smartphones": "Smartphones",
+        "acessorios-celular": "Acessórios de celular",
+        "smartwatches": "Relógios inteligentes"
+      }
+    },
+    "informatica": {
+      "nome": "Informática",
+      "icone": "💻",
+      "sub": {
+        "notebooks": "Notebooks",
+        "computadores": "Computadores",
+        "perifericos": "Teclado, mouse e periféricos",
+        "monitores": "Monitores",
+        "impressoras": "Impressoras"
+      }
+    },
+    "games": {
+      "nome": "Games",
+      "icone": "🎮",
+      "sub": {
+        "consoles": "Consoles",
+        "jogos": "Jogos",
+        "acessorios-games": "Acessórios de games"
+      }
+    },
+    "eletrodomesticos": {
+      "nome": "Eletrodomésticos",
+      "icone": "🧺",
+      "sub": {
+        "geladeiras": "Geladeiras",
+        "lavadoras": "Máquinas de lavar",
+        "fogoes": "Fogões",
+        "micro-ondas": "Micro-ondas",
+        "aspiradores": "Aspiradores"
+      }
+    },
+    "casa-e-cozinha": {
+      "nome": "Casa e cozinha",
+      "icone": "🍳",
+      "sub": {
+        "panelas": "Panelas",
+        "eletroportateis": "Eletroportáteis",
+        "utensilios": "Utensílios",
+        "mesa-posta": "Mesa posta"
+      }
+    },
+    "casa": {
+      "nome": "Casa e decoração",
+      "icone": "🏠",
+      "sub": {
+        "decoracao": "Decoração",
+        "organizacao": "Organização",
+        "iluminacao": "Iluminação",
+        "limpeza": "Limpeza"
+      }
+    },
+    "cama-mesa-banho": {
+      "nome": "Cama, mesa e banho",
+      "icone": "🛁",
+      "sub": {
+        "cama": "Cama",
+        "mesa": "Mesa",
+        "banho": "Banho"
+      }
+    },
+    "moveis": {
+      "nome": "Móveis",
+      "icone": "🛋️",
+      "sub": {
+        "sala": "Sala",
+        "quarto": "Quarto",
+        "escritorio": "Escritório"
+      }
+    },
+    "ferramentas": {
+      "nome": "Ferramentas e construção",
+      "icone": "🔧",
+      "sub": {
+        "ferramentas-eletricas": "Ferramentas elétricas",
+        "ferramentas-manuais": "Ferramentas manuais",
+        "construcao": "Construção",
+        "jardim": "Jardim"
+      }
+    },
+    "beleza": {
+      "nome": "Beleza e cuidados",
+      "icone": "💄",
+      "sub": {
+        "maquiagem": "Maquiagem",
+        "cabelo": "Cabelo",
+        "pele": "Pele",
+        "perfumes": "Perfumes",
+        "barbear": "Barbear"
+      }
+    },
+    "saude": {
+      "nome": "Saúde",
+      "icone": "💊",
+      "sub": {
+        "saude-bem-estar": "Saúde e bem-estar",
+        "higiene": "Higiene pessoal"
+      }
+    },
+    "esportes": {
+      "nome": "Esportes",
+      "icone": "⚽",
+      "sub": {
+        "futebol": "Futebol",
+        "fitness": "Academia e fitness",
+        "ciclismo": "Ciclismo",
+        "camping": "Camping e aventura",
+        "natacao": "Natação"
+      }
+    },
+    "moda": {
+      "nome": "Moda",
+      "icone": "👕",
+      "sub": {
+        "roupas": "Roupas",
+        "calcados": "Calçados",
+        "bolsas": "Bolsas e acessórios"
+      }
+    },
+    "relogios-joias": {
+      "nome": "Relógios e joias",
+      "icone": "⌚",
+      "sub": {
+        "relogios": "Relógios",
+        "joias": "Joias"
+      }
+    },
+    "livros": {
+      "nome": "Livros e eBooks",
+      "icone": "📚",
+      "sub": {
+        "livros-impressos": "Livros",
+        "ebooks": "eBooks",
+        "leitores": "Leitores digitais"
+      }
+    },
+    "bebes": {
+      "nome": "Bebês",
+      "icone": "🍼",
+      "sub": {
+        "carrinhos": "Carrinhos e cadeirinhas",
+        "alimentacao-bebe": "Alimentação",
+        "higiene-bebe": "Higiene"
+      }
+    },
+    "brinquedos": {
+      "nome": "Brinquedos",
+      "icone": "🧸",
+      "sub": {
+        "brinquedos-educativos": "Educativos",
+        "bonecos": "Bonecos e bonecas",
+        "jogos-tabuleiro": "Jogos de tabuleiro"
+      }
+    },
+    "pet": {
+      "nome": "Pet",
+      "icone": "🐾",
+      "sub": {
+        "caes": "Cães",
+        "gatos": "Gatos"
+      }
+    },
+    "automotivo": {
+      "nome": "Automotivo",
+      "icone": "🚗",
+      "sub": {
+        "acessorios-carro": "Acessórios",
+        "som-automotivo": "Som e GPS",
+        "moto": "Moto"
+      }
+    },
+    "papelaria": {
+      "nome": "Papelaria e escritório",
+      "icone": "✏️",
+      "sub": {
+        "material-escolar": "Material escolar",
+        "escritorio-papelaria": "Escritório"
+      }
+    },
+    "mercado": {
+      "nome": "Mercado",
+      "icone": "🛒",
+      "sub": {
+        "alimentos": "Alimentos",
+        "bebidas": "Bebidas"
+      }
+    },
+    "instrumentos": {
+      "nome": "Instrumentos musicais",
+      "icone": "🎸",
+      "sub": {
+        "cordas": "Cordas",
+        "teclados": "Teclados",
+        "audio-profissional": "Áudio profissional"
       }
     }
   },
@@ -172,25 +390,18 @@
           [
             "Preto e prata"
           ]
-        ],
-        [
-          "Voltagem",
-          [
-            "110V",
-            "220V"
-          ]
         ]
       ],
       "facetas": {
         "Marca": [
           "Mondial"
         ],
-        "Cor": [
-          "Preto e prata"
-        ],
         "Voltagem": [
           "110V",
           "220V"
+        ],
+        "Cor": [
+          "Preto e prata"
         ],
         "Potência": [
           "140 W"

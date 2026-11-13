@@ -133,15 +133,16 @@
 
 /* Foto do fabricante em fundo branco: o quadro branco evita a borda escura em volta. */
 .cartao-produto .foto { display: block; aspect-ratio: 1 / 1; background: #fff; }
-.cartao-produto .foto img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.cartao-produto .foto { overflow: hidden; }
+.cartao-produto .foto img { width: 100%; height: 100%; object-fit: contain; display: block; transform: scale(1.15); }
 
 .cartao-produto .corpo { display: flex; flex-direction: column; gap: 6px; padding: 12px; flex: 1; }
-.etiquetas { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin: 0; }
+.etiquetas { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 6px; margin: 0; }
 .etiqueta {
-  font-size: 12px;
+  font-size: 6px;
   font-weight: 800;
   line-height: 1.3;
-  padding: 3px 8px;
+  padding: 1px 4px;
   border-radius: 999px;
   color: var(--ciano);
   border: 1px solid rgba(134, 212, 234, 0.4);
@@ -430,3 +431,33 @@ h1, h2, h3 { transform: none; }
 .pesquisar-resultado { font-size: 13px; color: var(--texto-suave); flex-basis: 100%; }
 mark.achado { background: rgba(255, 185, 56, 0.35); color: inherit; border-radius: 3px; }
 mark.achado.atual { background: #FFB938; color: #0C0D1D; }
+
+/* Faixa de departamentos com ícones, no modelo da Amazon (13/11/2026). */
+.departamentos {
+  display: flex; gap: 10px; overflow-x: auto; padding: 4px 2px 12px;
+  align-self: stretch; max-width: 100%; min-width: 0;
+  scroll-snap-type: x proximity; scrollbar-width: thin;
+}
+.departamento {
+  flex: 0 0 92px; scroll-snap-align: start;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 10px 6px; border-radius: 14px; cursor: pointer;
+  border: 1px solid rgba(242, 136, 242, 0.35); background: transparent;
+  color: var(--rosa); font: inherit; font-size: 13px; font-weight: 700; line-height: 1.2;
+  transition: border-color var(--suave), background-color var(--suave);
+}
+.departamento-icone { font-size: 30px; line-height: 1; }
+.departamento-nome { text-align: center; }
+.departamento:hover, .departamento:focus-visible { border-color: var(--roxo); }
+.departamento:focus-visible { outline: 2px solid var(--rosa); outline-offset: 2px; }
+.departamento[aria-pressed="true"] { background: var(--degrade); color: var(--fundo); border-color: transparent; }
+.departamento.vazio { opacity: 0.55; }
+
+/* Cartão com várias voltagens: "Comprar:" e um botão por voltagem, cada um com o seu link. */
+.comprar-opcoes { margin-top: auto; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.comprar-opcoes span { font-size: 14px; font-weight: 700; color: var(--titulo); }
+.comprar-opcoes .botao-loja { margin-top: 0; flex: 1; }
+.preco-cartao strong a { color: inherit; text-decoration: none; }
+.preco-cartao strong a:hover, .preco-cartao strong a:focus-visible { color: var(--roxo); }
+.preco-valor a { color: var(--titulo); text-decoration: none; }
+.preco-valor a:hover, .preco-valor a:focus-visible { color: var(--roxo); }
