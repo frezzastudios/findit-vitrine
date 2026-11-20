@@ -10,6 +10,8 @@
 <link rel="apple-touch-icon" href="icone.png">
 <link rel="stylesheet" href="estilo.css">
 <link rel="stylesheet" href="vitrine.css">
+<link rel="stylesheet" href="tema-claro.css" id="tema-claro">
+<script>try{if(localStorage.getItem("findit-tema")==="escuro")document.getElementById("tema-claro").disabled=true}catch(e){}</script>
 </head>
 <body class="vitrine">
 
@@ -39,6 +41,7 @@
       <div class="departamentos" id="pilulas-categoria" aria-label="Departamentos"></div>
       <div class="pilulas sub" id="pilulas-sub" aria-label="Subcategorias"></div>
     </section>
+    <button type="button" class="botao-tema" id="botao-tema"></button>
 
     <div class="barra-resultados">
       <p class="contagem" id="contagem" aria-live="polite"></p>
@@ -54,6 +57,7 @@
         <div id="facetas"></div>
       </details>
       <div>
+        <div class="aplicados aplicados-topo" id="aplicados" hidden></div>
         <ul class="grade" id="grade"></ul>
         <p class="vazio" id="vazio" hidden>
           Nenhuma descoberta com essa busca. Tente outra palavra ou digite o nº da descoberta que aparece no vídeo.
@@ -68,11 +72,33 @@
 
   <footer class="rodape">
     <p>A Find It não vende nem entrega os produtos. A compra de cada produto é feita no site oficial da loja.</p>
+    <p>Lojas: <a href="https://www.magazinevoce.com.br/magazinefindit/">Loja parceira</a> · <a href="https://www.cea.com.br/minhacea/findit?utm_source=mais&amp;utm_medium=minhacea&amp;utm_campaign=findit">C&amp;A</a> (a Find It é consultora Minha C&amp;A)</p>
+    <p>Redes: <a href="https://www.instagram.com/find.it.br/">Instagram</a> · <a href="https://www.youtube.com/@find-it-br">YouTube</a> · <a href="https://www.tiktok.com/@find.it.br">TikTok</a> · <a href="https://www.facebook.com/profile.php?id=61596130004679">Facebook</a></p>
     <p>Contato: mensagem direta no Instagram <a href="https://www.instagram.com/find.it.br/">@find.it.br</a></p>
     <p>© 2026 Find It | Store</p>
   </footer>
 
 </div>
 <script src="vitrine.js"></script>
+<script>
+/* Botão de tema: liga e desliga o tema-claro.css e guarda a escolha no aparelho de quem visita. */
+(function () {
+  var l = document.getElementById("tema-claro"), b = document.getElementById("botao-tema");
+  var m = document.querySelector('meta[name="theme-color"]');
+  function mostra() {
+    var escuro = l.disabled;
+    b.textContent = escuro ? "☀" : "☾";
+    b.setAttribute("aria-label", escuro ? "Mudar para o tema claro" : "Mudar para o tema escuro");
+    b.title = b.getAttribute("aria-label");
+    if (m) m.content = escuro ? "#0C0D1D" : "#F4F5FA";
+  }
+  b.addEventListener("click", function () {
+    l.disabled = !l.disabled;
+    try { localStorage.setItem("findit-tema", l.disabled ? "escuro" : "claro"); } catch (e) {}
+    mostra();
+  });
+  mostra();
+})();
+</script>
 </body>
 </html>

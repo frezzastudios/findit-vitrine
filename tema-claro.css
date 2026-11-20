@@ -1,0 +1,62 @@
+/* Tema claro da vitrine (separado em 14/11/2026). O tema escuro fica em vitrine.css;
+   este arquivo carrega por cima dele e pode ser desligado pelo botão de tema no canto da tela. */
+
+/* TESTE DE TEMA CLARO (pedido do César em 13/11/2026). Fundo branco no modelo das lojas
+   grandes; o degradê do ícone (azul, roxo e rosa) continua nos botões e nos filtros marcados.
+   O tema escuro volta pelo botão de tema no canto da tela (desde 14/11/2026). */
+:root {
+  --fundo: #F4F5FA;
+  --superficie: #FFFFFF;
+  --titulo: #15162E;
+  --texto: #2B2E47;
+  --texto-suave: #5C6278;
+  --ciano: #0A7896;
+  --roxo: #8A36C2;
+  --rosa: #3B0F5C; /* era #BF2E9C; roxo bem escuro nos botões e ícones (pedido do César em 14/11/2026) */
+  --degrade: linear-gradient(135deg, #86D4EA, #C067E9 55%, #F288F2);
+  --sombra: 0 1px 3px rgba(21, 22, 46, 0.08), 0 4px 14px rgba(21, 22, 46, 0.06);
+}
+body {
+  background:
+    radial-gradient(ellipse 70% 40% at 50% 0%, rgba(134, 212, 234, 0.25), transparent 70%),
+    var(--fundo);
+}
+.faixa-aviso { background: #15162E; color: #E2ECF3; }
+.cartao-produto, .painel-filtros, .topo-vitrine .busca { box-shadow: var(--sombra); }
+.cartao-produto, .cartao { border-color: rgba(21, 22, 46, 0.08); }
+.preco-livre input, .variacao li { border-color: rgba(21, 22, 46, 0.2); }
+.faceta, .aplicados { border-bottom-color: rgba(21, 22, 46, 0.1); }
+.pilula[aria-pressed="true"], .chip[aria-pressed="true"], .departamento[aria-pressed="true"],
+.pesquisar-pagina button, .botao-loja { color: #15162E; }
+.estrelas { color: rgba(21, 22, 46, 0.18); }
+.estrelas > span { color: #F2A500; }
+.lupa-painel { box-shadow: 0 12px 40px rgba(21, 22, 46, 0.25); }
+.botao-loja:hover, .botao-loja:focus-visible { color: #15162E; }
+
+/* Bordas, brilhos e o "subir" ao passar o mouse são os mesmos do tema escuro (pedido do César em
+   14/11/2026); este arquivo só troca as cores do fundo e dos textos. */
+/* Seleção dos cartões em roxo escuro no tema claro (pedido do César em 14/11/2026): o ciano some no branco. */
+:root { --brilho-ciano: 0 0 16px rgba(138, 54, 194, 0.35); }
+.cartao-produto:hover, .cartao:hover { border-color: rgba(138, 54, 194, 0.6); }
+
+/* Bordas limpas nos selecionados (pedido do César em 13/11/2026): o degradê cobre a borda inteira,
+   sem repetir nos cantos (quadradinhos azul e rosa). */
+.departamento[aria-pressed="true"], .pilula[aria-pressed="true"], .chip[aria-pressed="true"] {
+  background: var(--degrade) border-box;
+  background-origin: border-box;
+  background-clip: border-box;
+  background-repeat: no-repeat;
+  border-color: transparent;
+}
+
+/* No escuro, o mouse por cima deixa estes botões em ciano (pedido do César em 14/11/2026);
+   no claro o ciano some no branco, então continua roxo. */
+.pilula:hover, .pilula:focus-visible, .botao-contorno:hover, .botao-contorno:focus-visible,
+.chip:hover, .chip:focus-visible, .botao-icone:hover, .botao-icone:focus-visible,
+.departamento:hover, .departamento:focus-visible, .botao-tema:hover, .botao-tema:focus-visible {
+  color: var(--roxo); border-color: var(--roxo);
+}
+
+/* Botão Comprar (pedido do César em 14/11/2026): escrita azul-marinho; o resto como antes. */
+/* [SUPERADO em 14/11/2026: era #1E2F78; vale a mesma cor do tema escuro, #0C0D1D] */
+.botao-loja, .botao-loja:hover, .botao-loja:focus-visible { color: #0C0D1D; }

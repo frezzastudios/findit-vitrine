@@ -18,7 +18,7 @@
   var CHAVE_DESEJOS = "findit-desejos";
 
   var dados = null;
-  var estado = { q: "", cat: "", sub: "", ordem: "recentes", nota: 0, desejos: false, f: {}, mostrados: 0 };
+  var estado = { q: "", cat: "", sub: "", ordem: "recentes", nota: 0, desejos: false, f: {}, pmin: null, pmax: null, mostrados: 0 };
   var porPagina = window.matchMedia("(min-width: 768px)").matches ? 24 : 12;
 
   var el = {
@@ -30,6 +30,8 @@
     subs: document.getElementById("pilulas-sub"),
     facetas: document.getElementById("facetas"),
     painel: document.getElementById("painel-filtros"),
+    resumoFiltros: document.querySelector("#painel-filtros summary"),
+    aplicados: document.getElementById("aplicados"),
     contagem: document.getElementById("contagem"),
     grade: document.getElementById("grade"),
     vazio: document.getElementById("vazio"),
@@ -115,36 +117,42 @@
     return (p.facetas && p.facetas[nome]) || [];
   }
 
-  function filtrar(semFaceta) {
-    var lista = dados.produtos;
-    if (estado.cat) lista = lista.filter(function (p) { return p.categoria === estado.cat; });
-    var porCategoria = lista;
-    if (estado.sub) lista = lista.filter(function (p) { return p.subcategoria === estado.sub; });
-
+  /* A busca digitada vale para tudo. O nº da descoberta sozinho acha só ela. */
+  function casaQ(p) {
     var q = estado.q.trim();
+    if (!q) return true;
     if (/^\d+$/.test(q)) {
       var n = parseInt(q, 10);
-      var porNumero = lista.filter(function (p) { return p.numero === n; });
-      lista = porNumero.length ? porNumero : lista.filter(function (p) { return casaBusca(p, [q]); });
-    } else if (q) {
-      var termos = palavrasDe(q);
-      lista = lista.filter(function (p) { return casaBusca(p, termos); });
+      if (dados.produtos.some(function (o) { return o.numero === n; })) return p.numero === n;
+      return casaBusca(p, [q]);
     }
-    var antesDasFacetas = lista;
+    return casaBusca(p, palavrasDe(q));
+  }
 
-    if (estado.nota) lista = lista.filter(function (p) { return p.avaliacao && p.avaliacao.nota >= estado.nota; });
-    if (estado.desejos) {
-      var desejos = lerDesejos();
-      lista = lista.filter(function (p) { return desejos.indexOf(p.numero) !== -1; });
+  /* Cada filtro é testado à parte. "sem" solta um grupo, para que esse grupo conte
+     os produtos como se ele não estivesse marcado, como no Mercado Livre e na Magalu. */
+  var desejosAgora = [];
+  function passa(p, sem) {
+    if (!casaQ(p)) return false;
+    if (sem !== "cat" && estado.cat && p.categoria !== estado.cat) return false;
+    if (sem !== "cat" && sem !== "sub" && estado.sub && p.subcategoria !== estado.sub) return false;
+    if (sem !== "preco" && (estado.pmin !== null || estado.pmax !== null)) {
+      if (!p.preco) return false;
+      if (estado.pmin !== null && p.preco.valor < estado.pmin) return false;
+      if (estado.pmax !== null && p.preco.valor > estado.pmax) return false;
     }
-    Object.keys(estado.f).forEach(function (nome) {
-      if (nome === semFaceta || !estado.f[nome].length) return;
-      lista = lista.filter(function (p) {
-        var v = valoresDaFaceta(p, nome);
-        return estado.f[nome].some(function (x) { return v.indexOf(x) !== -1; });
-      });
+    if (sem !== "nota" && estado.nota && !(p.avaliacao && p.avaliacao.nota >= estado.nota)) return false;
+    if (sem !== "desejos" && estado.desejos && desejosAgora.indexOf(p.numero) === -1) return false;
+    return Object.keys(estado.f).every(function (nome) {
+      if (nome === sem || !estado.f[nome].length) return true;
+      var v = valoresDaFaceta(p, nome);
+      return estado.f[nome].some(function (x) { return v.indexOf(x) !== -1; });
     });
-    return { lista: ordenar(lista.slice()), porCategoria: porCategoria, antesDasFacetas: antesDasFacetas };
+  }
+
+  function filtrar(sem) {
+    desejosAgora = lerDesejos();
+    return dados.produtos.filter(function (p) { return passa(p, sem); });
   }
 
   function valorDaOrdem(p, ordem) {
@@ -183,11 +191,15 @@
     el.buscaCat.value = estado.cat;
   }
 
-  function montarOrdens(base) {
-    var disponiveis = ORDENS.filter(function (o) {
+  function ordensDisponiveis() {
+    return ORDENS.filter(function (o) {
       if (!o.precisa) return true;
-      return base.some(function (p) { return o.precisa === "preco" ? !!p.preco : !!p.avaliacao; });
+      return dados.produtos.some(function (p) { return o.precisa === "preco" ? !!p.preco : !!p.avaliacao; });
     });
+  }
+
+  function montarOrdens() {
+    var disponiveis = ordensDisponiveis();
     if (!disponiveis.some(function (o) { return o.id === estado.ordem; })) estado.ordem = "recentes";
     el.ordem.replaceChildren.apply(el.ordem, disponiveis.map(function (o) { return opcao(o.id, o.nome); }));
     el.ordem.value = estado.ordem;
@@ -253,78 +265,248 @@
     return g;
   }
 
-  function caixa(texto, marcada, aoMudar) {
-    var label = document.createElement("label");
-    var c = document.createElement("input");
-    c.type = "checkbox";
-    c.checked = marcada;
-    c.addEventListener("change", function () { aoMudar(c.checked); });
-    label.appendChild(c);
-    label.appendChild(document.createTextNode(" " + texto));
-    return label;
+  function chip(texto, n, ativa, aoClicar) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "chip";
+    b.setAttribute("aria-pressed", ativa ? "true" : "false");
+    b.textContent = texto;
+    if (n !== null && n !== undefined) {
+      var s = document.createElement("span");
+      s.className = "chip-qtd";
+      s.textContent = " (" + n + ")";
+      b.appendChild(s);
+    }
+    b.addEventListener("click", aoClicar);
+    return b;
   }
 
-  /* Filtros do lado, como na Amazon: cada grupo mostra só os valores que existem
-     nos resultados, com a quantidade. */
-  function montarFacetas(base) {
+  /* Grupo de opções em botões, como na Magalu. Passou de 10, o resto fica atrás de
+     "Mostrar todos". */
+  var LIMITE = 10;
+  function grupoDeChips(titulo, itens) {
+    var g = grupo(titulo);
+    var caixaChips = document.createElement("div");
+    caixaChips.className = "chips";
+    itens.forEach(function (it, i) {
+      var c = chip(it.texto, it.n, it.ativa, it.clicar);
+      if (i >= LIMITE && !it.ativa) c.hidden = true;
+      caixaChips.appendChild(c);
+    });
+    g.appendChild(caixaChips);
+    if (itens.length > LIMITE) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "ver-mais";
+      b.textContent = "Mostrar todos ▾";
+      b.addEventListener("click", function () {
+        var abrir = b.textContent.indexOf("todos") !== -1;
+        caixaChips.querySelectorAll(".chip").forEach(function (c, k) {
+          if (k >= LIMITE && c.getAttribute("aria-pressed") !== "true") c.hidden = !abrir;
+        });
+        b.textContent = abrir ? "Mostrar menos ▴" : "Mostrar todos ▾";
+      });
+      g.appendChild(b);
+    }
+    return g;
+  }
+
+  function contarPor(lista, valoresDe) {
+    var c = {};
+    lista.forEach(function (p) { valoresDe(p).forEach(function (v) { c[v] = (c[v] || 0) + 1; }); });
+    return c;
+  }
+
+  function precoCurto(v) { return "R$ " + numeroBR(v); }
+
+  var FAIXAS = [[null, 100], [100, 200], [200, 500], [500, 1000], [1000, 3000], [3000, 5000], [5000, null]];
+  function nomeDaFaixa(min, max) {
+    if (min === null) return "Até " + precoCurto(max);
+    if (max === null) return "Acima de " + precoCurto(min);
+    return precoCurto(min) + " a " + precoCurto(max);
+  }
+
+  function lerValor(texto) {
+    var limpo = String(texto || "").replace(/[^\d,]/g, "").replace(",", ".");
+    return limpo ? parseFloat(limpo) : null;
+  }
+
+  function grupoDePreco() {
+    var base = filtrar("preco").filter(function (p) { return p.preco; });
+    var g = grupo("Preço");
+    var caixaChips = document.createElement("div");
+    caixaChips.className = "chips";
+    FAIXAS.forEach(function (fx) {
+      var n = base.filter(function (p) {
+        var v = p.preco.valor;
+        return (fx[0] === null || v >= fx[0]) && (fx[1] === null || v <= fx[1]);
+      }).length;
+      var ativa = estado.pmin === fx[0] && estado.pmax === fx[1];
+      if (!n && !ativa) return;
+      caixaChips.appendChild(chip(nomeDaFaixa(fx[0], fx[1]), n, ativa, function () {
+        mudar(ativa ? { pmin: null, pmax: null } : { pmin: fx[0], pmax: fx[1] });
+      }));
+    });
+    g.appendChild(caixaChips);
+
+    var form = document.createElement("form");
+    form.className = "preco-livre";
+    var min = document.createElement("input");
+    var max = document.createElement("input");
+    [[min, "Valor mínimo", estado.pmin], [max, "Valor máximo", estado.pmax]].forEach(function (x) {
+      x[0].type = "text";
+      x[0].inputMode = "decimal";
+      x[0].placeholder = x[1];
+      x[0].setAttribute("aria-label", x[1] + " em reais");
+      if (x[2] !== null) x[0].value = numeroBR(x[2]);
+    });
+    var ir = document.createElement("button");
+    ir.type = "submit";
+    ir.className = "chip";
+    ir.textContent = "Aplicar";
+    form.append(min, max, ir);
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var a = lerValor(min.value), b = lerValor(max.value);
+      if (a !== null && b !== null && a > b) { var t = a; a = b; b = t; }
+      mudar({ pmin: a, pmax: b });
+    });
+    g.appendChild(form);
+    return g;
+  }
+
+  /* Lista do que está marcado, com um "×" em cada, como em "Filtros aplicados"
+     do Mercado Livre. */
+  function filtrosAplicados() {
+    var itens = [];
+    if (estado.cat) itens.push({ texto: dados.categorias[estado.cat].nome, tirar: { cat: "", sub: "" } });
+    if (estado.sub && estado.cat) itens.push({ texto: dados.categorias[estado.cat].sub[estado.sub], tirar: { sub: "" } });
+    Object.keys(estado.f).forEach(function (nome) {
+      estado.f[nome].forEach(function (v) {
+        var f = Object.assign({}, estado.f);
+        var resto = f[nome].filter(function (x) { return x !== v; });
+        if (resto.length) f[nome] = resto; else delete f[nome];
+        itens.push({ texto: v, tirar: { f: f } });
+      });
+    });
+    if (estado.pmin !== null || estado.pmax !== null) {
+      itens.push({ texto: nomeDaFaixa(estado.pmin, estado.pmax), tirar: { pmin: null, pmax: null } });
+    }
+    if (estado.nota) itens.push({ texto: estado.nota + " ★ ou mais", tirar: { nota: 0 } });
+    if (estado.desejos) itens.push({ texto: "♥ Lista de desejos", tirar: { desejos: false } });
+    return itens;
+  }
+
+  function desenharAplicados(destino, comTitulo) {
+    var itens = filtrosAplicados();
+    destino.replaceChildren();
+    destino.hidden = !itens.length;
+    if (!itens.length) return 0;
+    if (comTitulo) {
+      var t = document.createElement("p");
+      t.className = "aplicados-titulo";
+      t.textContent = "Filtros aplicados";
+      destino.appendChild(t);
+    }
+    var caixaChips = document.createElement("div");
+    caixaChips.className = "chips";
+    itens.forEach(function (it) {
+      var c = chip(it.texto + " ×", null, true, function () { mudar(it.tirar); });
+      c.setAttribute("aria-label", "Tirar o filtro " + it.texto);
+      caixaChips.appendChild(c);
+    });
+    var limpar = document.createElement("button");
+    limpar.type = "button";
+    limpar.className = "ver-mais";
+    limpar.textContent = "Limpar filtros";
+    limpar.addEventListener("click", function () {
+      mudar({ cat: "", sub: "", f: {}, pmin: null, pmax: null, nota: 0, desejos: false });
+    });
+    caixaChips.appendChild(limpar);
+    destino.appendChild(caixaChips);
+    return itens.length;
+  }
+
+  /* Coluna de filtros no modelo da Magalu e do Mercado Livre: filtros aplicados,
+     ordenar, categoria, tipo de produto, marca, preço, avaliação, loja e as
+     características de cada produto. Cada opção mostra quantos produtos tem. */
+  function montarFacetas() {
     el.facetas.replaceChildren();
 
-    if (base.some(function (p) { return p.avaliacao; })) {
-      var gn = grupo("Avaliação do cliente");
-      [4, 3].forEach(function (n) {
-        var qtd = base.filter(function (p) { return p.avaliacao && p.avaliacao.nota >= n; }).length;
-        if (!qtd) return;
-        gn.appendChild(caixa("★".repeat(n) + "☆".repeat(5 - n) + " e mais (" + qtd + ")", estado.nota === n,
-          function (on) { mudar({ nota: on ? n : 0 }); }));
-      });
-      el.facetas.appendChild(gn);
+    var topo = document.createElement("div");
+    topo.className = "aplicados";
+    var nAplicados = desenharAplicados(topo, true);
+    if (nAplicados) el.facetas.appendChild(topo);
+    desenharAplicados(el.aplicados, false);
+    el.resumoFiltros.textContent = nAplicados ? "Filtros (" + nAplicados + ")" : "Filtros";
+
+    el.facetas.appendChild(grupoDeChips("Ordenar", ordensDisponiveis().map(function (o) {
+      return { texto: o.nome, ativa: estado.ordem === o.id, clicar: function () { mudar({ ordem: o.id }); } };
+    })));
+
+    var nCat = contarPor(filtrar("cat"), function (p) { return [p.categoria]; });
+    var cats = Object.keys(dados.categorias).filter(function (id) { return nCat[id] || estado.cat === id; });
+    if (cats.length) {
+      el.facetas.appendChild(grupoDeChips("Categoria", cats.map(function (id) {
+        var ativa = estado.cat === id;
+        return { texto: dados.categorias[id].nome, n: nCat[id] || 0, ativa: ativa,
+          clicar: function () { mudar({ cat: ativa ? "" : id, sub: "" }); } };
+      })));
     }
 
-    var nomes = ["Loja"];
-    base.forEach(function (p) {
+    var nSub = contarPor(filtrar("sub"), function (p) { return [p.categoria + "/" + p.subcategoria]; });
+    var subs = Object.keys(nSub);
+    if (subs.length) {
+      el.facetas.appendChild(grupoDeChips("Tipo de produto", subs.map(function (chave) {
+        var par = chave.split("/");
+        var ativa = estado.cat === par[0] && estado.sub === par[1];
+        return { texto: dados.categorias[par[0]].sub[par[1]] || par[1], n: nSub[chave], ativa: ativa,
+          clicar: function () { mudar(ativa ? { sub: "" } : { cat: par[0], sub: par[1] }); } };
+      }).sort(function (a, b) { return a.texto.localeCompare(b.texto, "pt-BR"); })));
+    }
+
+    var nomes = ["Marca"];
+    dados.produtos.forEach(function (p) {
       Object.keys(p.facetas || {}).forEach(function (k) { if (nomes.indexOf(k) === -1) nomes.push(k); });
     });
-    nomes.forEach(function (nome) {
-      var contagem = {};
-      filtrar(nome).antesDasFacetas.forEach(function (p) {
-        valoresDaFaceta(p, nome).forEach(function (v) { contagem[v] = (contagem[v] || 0) + 1; });
-      });
-      var valores = Object.keys(contagem).sort();
-      if (!valores.length) return;
-      var g = grupo(nome);
+
+    function grupoDaFaceta(nome) {
+      var contagem = contarPor(filtrar(nome), function (p) { return valoresDaFaceta(p, nome); });
       var marcados = estado.f[nome] || [];
-      valores.forEach(function (v, i) {
-        var label = caixa(v + " (" + contagem[v] + ")", marcados.indexOf(v) !== -1, function (on) {
-          var lista = (estado.f[nome] || []).filter(function (x) { return x !== v; });
-          if (on) lista.push(v);
+      marcados.forEach(function (v) { if (!(v in contagem)) contagem[v] = 0; });
+      var valores = Object.keys(contagem).sort(function (a, b) { return a.localeCompare(b, "pt-BR", { numeric: true }); });
+      if (!valores.length) return;
+      el.facetas.appendChild(grupoDeChips(nome, valores.map(function (v) {
+        var ativa = marcados.indexOf(v) !== -1;
+        return { texto: v, n: contagem[v], ativa: ativa, clicar: function () {
+          var lista = marcados.filter(function (x) { return x !== v; });
+          if (!ativa) lista.push(v);
           var f = Object.assign({}, estado.f);
           if (lista.length) f[nome] = lista; else delete f[nome];
           mudar({ f: f });
-        });
-        if (i >= 6) label.hidden = true;
-        g.appendChild(label);
-      });
-      if (valores.length > 6) {
-        var b = document.createElement("button");
-        b.type = "button";
-        b.className = "ver-mais";
-        b.textContent = "Ver mais ▾";
-        b.addEventListener("click", function () {
-          var abrir = b.textContent.indexOf("mais") !== -1;
-          g.querySelectorAll("label").forEach(function (l, k) { if (k >= 6) l.hidden = !abrir; });
-          b.textContent = abrir ? "Ver menos ▴" : "Ver mais ▾";
-        });
-        g.appendChild(b);
-      }
-      el.facetas.appendChild(g);
-    });
+        } };
+      })));
+    }
+
+    grupoDaFaceta("Marca");
+    if (dados.produtos.some(function (p) { return p.preco; })) el.facetas.appendChild(grupoDePreco());
+
+    var baseNota = filtrar("nota");
+    if (baseNota.some(function (p) { return p.avaliacao; })) {
+      el.facetas.appendChild(grupoDeChips("Avaliação", [4, 3, 2, 1].map(function (n) {
+        var ativa = estado.nota === n;
+        return { texto: n + " ★ ou mais", n: baseNota.filter(function (p) { return p.avaliacao && p.avaliacao.nota >= n; }).length,
+          ativa: ativa, clicar: function () { mudar({ nota: ativa ? 0 : n }); } };
+      })));
+    }
+
+    grupoDaFaceta("Loja");
+    nomes.slice(1).forEach(grupoDaFaceta);
 
     var desejos = lerDesejos();
     if (desejos.length) {
-      var gd = grupo("Sua lista");
-      gd.appendChild(caixa("♥ Só a lista de desejos (" + desejos.length + ")", estado.desejos,
-        function (on) { mudar({ desejos: on }); }));
-      el.facetas.appendChild(gd);
+      el.facetas.appendChild(grupoDeChips("Sua lista", [{ texto: "♥ Só a lista de desejos", n: desejos.length,
+        ativa: estado.desejos, clicar: function () { mudar({ desejos: !estado.desejos }); } }]));
     }
   }
 
@@ -433,11 +615,10 @@
   }
 
   function desenhar(manterQuantos) {
-    var r = filtrar();
-    montarPilulas(r.porCategoria);
-    montarOrdens(r.antesDasFacetas);
-    montarFacetas(r.antesDasFacetas);
-    r = filtrar();
+    montarPilulas(dados.produtos.filter(function (p) { return p.categoria === estado.cat; }));
+    montarOrdens();
+    montarFacetas();
+    var r = { lista: ordenar(filtrar()) };
 
     var total = r.lista.length;
     estado.mostrados = Math.min(total, Math.max(porPagina, manterQuantos || 0));
@@ -460,6 +641,8 @@
     if (estado.ordem !== "recentes") params.set("ordem", estado.ordem);
     if (estado.nota) params.set("nota", estado.nota);
     if (estado.desejos) params.set("desejos", "1");
+    if (estado.pmin !== null) params.set("pmin", estado.pmin);
+    if (estado.pmax !== null) params.set("pmax", estado.pmax);
     Object.keys(estado.f).forEach(function (nome) { params.set("f." + nome, estado.f[nome].join("|")); });
     var busca = params.toString();
     history.replaceState(null, "", busca ? "?" + busca : location.pathname);
@@ -477,6 +660,10 @@
     ["q", "cat", "sub", "ordem"].forEach(function (k) { if (params.get(k)) estado[k] = params.get(k); });
     estado.nota = parseInt(params.get("nota"), 10) || 0;
     estado.desejos = params.get("desejos") === "1";
+    ["pmin", "pmax"].forEach(function (k) {
+      var v = parseFloat(params.get(k));
+      estado[k] = isNaN(v) ? null : v;
+    });
     params.forEach(function (v, k) { if (k.indexOf("f.") === 0 && v) estado.f[k.slice(2)] = v.split("|"); });
     // Endereço antigo com ?loja= continua funcionando como filtro de loja.
     var lojaAntiga = params.get("loja");

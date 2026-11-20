@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-11-13T18:39:30",
+  "gerado_em": "2026-11-19T23:55:35",
   "lojas": {
     "loja-1": {
       "rotulo": "Loja parceira",
@@ -65,7 +65,8 @@
         "lavadoras": "Máquinas de lavar",
         "fogoes": "Fogões",
         "micro-ondas": "Micro-ondas",
-        "aspiradores": "Aspiradores"
+        "aspiradores": "Aspiradores",
+        "bebedouros": "Bebedouros"
       }
     },
     "casa-e-cozinha": {
@@ -187,7 +188,9 @@
       "sub": {
         "brinquedos-educativos": "Educativos",
         "bonecos": "Bonecos e bonecas",
-        "jogos-tabuleiro": "Jogos de tabuleiro"
+        "jogos-tabuleiro": "Jogos de tabuleiro",
+        "veiculos-infantis": "Veículos infantis",
+        "piscinas-infantis": "Piscinas infantis"
       }
     },
     "pet": {
@@ -358,27 +361,27 @@
       "fotos": [
         {
           "src": "fotos/001-ventilador-mondial-super-power-40cm-1.jpg",
-          "alt": "Ventilador Mondial preto de 6 pás, visto de frente"
+          "alt": "Ventilador Mondial Super Power de 40 cm, preto, de frente"
         },
         {
           "src": "fotos/001-ventilador-mondial-super-power-40cm-2.jpg",
-          "alt": "Ventilador ligado, com a hélice de 6 pás e 40 cm"
+          "alt": "Ventilador com a hélice de 6 pás em destaque"
         },
         {
           "src": "fotos/001-ventilador-mondial-super-power-40cm-3.jpg",
-          "alt": "Ventilador de lado, com a cabeça inclinada para cima e para baixo"
+          "alt": "Ventilador inclinado para cima, com a grade e a hélice soltas para limpar"
         },
         {
           "src": "fotos/001-ventilador-mondial-super-power-40cm-4.jpg",
-          "alt": "Ventilador de lado, com o botão de cima que trava o giro"
+          "alt": "Ventilador de lado, mostrando que ele gira para os lados"
         },
         {
           "src": "fotos/001-ventilador-mondial-super-power-40cm-5.jpg",
-          "alt": "Detalhe da alça atrás e do botão das 3 velocidades"
+          "alt": "Detalhe da alça de transporte e do botão de velocidade"
         },
         {
           "src": "fotos/001-ventilador-mondial-super-power-40cm-6.jpg",
-          "alt": "Ventilador com as medidas marcadas na foto"
+          "alt": "Ventilador com as medidas e o peso marcados"
         }
       ],
       "video": null,
