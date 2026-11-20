@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacidade e cookies | Find It | Store</title>
+<meta name="description" content="Como a Find It trata os dados de quem visita o site e como funciona o aviso de cookies.">
+<meta name="theme-color" content="#0C0D1D">
+<link rel="icon" type="image/png" href="icone.png">
+<link rel="stylesheet" href="estilo.css">
+<link rel="stylesheet" href="tema-claro.css" id="tema-claro">
+<script>try{if(localStorage.getItem("findit-tema")==="escuro")document.getElementById("tema-claro").disabled=true}catch(e){}</script>
+</head>
+<body>
+<div class="pagina">
+
+  <header class="topo">
+    <a class="marca" href="./">
+      <img src="icone.png" alt="" width="48" height="48">
+      <span>Find It | Store</span>
+    </a>
+  </header>
+
+  <main>
+    <h1>Privacidade e cookies</h1>
+    <p>Atualizado em 20 de novembro de 2026.</p>
+
+    <h2>Quem somos</h2>
+    <p>Este site é da Find It | Store. A Find It mostra produtos e leva você até o site oficial da loja. A Find It não vende nem entrega produtos.</p>
+
+    <h2>O que o site guarda no seu aparelho</h2>
+    <p>O site não tem cadastro nem formulário. Ele guarda no seu próprio navegador só duas escolhas suas: o tema claro ou escuro e a sua resposta ao aviso de cookies.</p>
+
+    <h2>Medição do Pinterest</h2>
+    <p>Se você clicar em "Aceitar" no aviso, o site carrega a Tag do Pinterest. Ela envia ao Pinterest informações sobre a sua visita: páginas vistas, buscas feitas no site e cliques nos botões das lojas, além de dados técnicos do navegador e do aparelho, como o endereço IP. Usamos isso para saber quais publicações trazem visitas e melhorar o que mostramos.</p>
+    <p>Se você clicar em "Recusar", a Tag do Pinterest não é carregada. O site continua funcionando normalmente.</p>
+    <p>O Pinterest trata esses dados conforme a <a href="https://policy.pinterest.com/pt-br/privacy-policy" target="_blank" rel="noopener">Política de Privacidade do Pinterest</a>.</p>
+    <p><button type="button" class="botao-contorno" id="mudar-escolha">Mudar minha escolha de cookies</button></p>
+
+    <h2>Hospedagem</h2>
+    <p>O site fica hospedado no GitHub Pages. Como qualquer servidor, ele pode registrar dados técnicos de acesso, como o endereço IP, por segurança. Veja a <a href="https://docs.github.com/pt/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener">declaração de privacidade do GitHub</a>.</p>
+
+    <h2>Compras nas lojas</h2>
+    <p>Quando você clica para ver um produto, vai para o site da loja. A partir dali, os seus dados seguem a política de privacidade da própria loja.</p>
+
+    <h2>Seus direitos</h2>
+    <p>Pela Lei Geral de Proteção de Dados (Lei 13.709/2018), você pode pedir informações sobre os seus dados e retirar o seu consentimento quando quiser. Para retirar, use o botão "Mudar minha escolha de cookies" acima.</p>
+
+    <h2>Contato</h2>
+    <p>Mensagem direta no Instagram <a href="https://www.instagram.com/find.it.br/">@find.it.br</a>.</p>
+  </main>
+
+  <footer class="rodape">
+    <p>A Find It não vende nem entrega os produtos. A compra de cada produto é feita no site oficial da loja.</p>
+    <p><a href="./">Voltar para as descobertas</a></p>
+    <p>© 2026 Find It | Store</p>
+  </footer>
+
+</div>
+<script src="consentimento.js"></script>
+<script>
+document.getElementById("mudar-escolha").addEventListener("click", function () {
+  if (window.finditCookies) window.finditCookies.mudarEscolha();
+});
+</script>
+</body>
+</html>
