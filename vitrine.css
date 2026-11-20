@@ -504,3 +504,15 @@ mark.achado.atual { background: #FFB938; color: #0C0D1D; }
 /* Igual ao "Toda a categoria" no tema escuro (pedido do César em 14/11/2026): sem brilho e sem subir. */
 .botao-tema:hover, .botao-tema:focus-visible { color: var(--ciano); border-color: var(--ciano); }
 .botao-tema:focus-visible { outline: 2px solid var(--rosa); outline-offset: 3px; }
+/* Links das lojas na mesma faixa do botão de tema, à esquerda dele (pedido do César em 20/11/2026). */
+.faixa-tema { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 8px; margin: 4px 0; }
+.faixa-tema .botao-tema { margin: 0; }
+.lojas-topo { display: flex; flex-wrap: wrap; gap: 8px; }
+.loja-topo {
+  min-height: 44px; display: inline-flex; align-items: center; padding: 6px 16px; border-radius: 999px;
+  border: 1px solid rgba(242, 136, 242, 0.5); color: var(--rosa); font-size: 14px; font-weight: 600;
+  text-decoration: none; white-space: nowrap;
+  transition: color var(--suave), border-color var(--suave);
+}
+.loja-topo:hover, .loja-topo:focus-visible { color: var(--ciano); border-color: var(--ciano); }
+.loja-topo:focus-visible { outline: 2px solid var(--rosa); outline-offset: 3px; }
