@@ -685,7 +685,13 @@
     el.ordem.addEventListener("change", function () { mudar({ ordem: el.ordem.value }); });
     el.mais.addEventListener("click", function () { desenhar(estado.mostrados + porPagina); });
     // Filtros abertos no computador; no celular ficam fechados na gaveta.
-    if (window.matchMedia("(min-width: 900px)").matches) el.painel.open = true;
+    // Quando a janela passa para tamanho de computador, abre de novo: no computador o
+    // título "Filtros" fica escondido e o painel fechado sumiria (visto em 20/11/2026).
+    var telaGrande = window.matchMedia("(min-width: 900px)");
+    if (telaGrande.matches) el.painel.open = true;
+    var aoMudarTela = function (ev) { if (ev.matches) el.painel.open = true; };
+    if (telaGrande.addEventListener) telaGrande.addEventListener("change", aoMudarTela);
+    else if (telaGrande.addListener) telaGrande.addListener(aoMudarTela);
   }
 
   fetch("produtos.json")
