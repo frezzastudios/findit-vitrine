@@ -234,6 +234,39 @@
     return c;
   }
 
+  // Setas nos cantos da faixa de departamentos (pedido do César em 21/11/2026):
+  // cada clique anda quase uma tela para o lado; a seta some quando chega na ponta.
+  var setas = (function () {
+    var caixa = document.createElement("div");
+    caixa.className = "departamentos-caixa";
+    el.cats.parentNode.insertBefore(caixa, el.cats);
+    caixa.appendChild(el.cats);
+    function seta(lado, rotulo, simbolo) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "departamentos-seta " + lado;
+      b.setAttribute("aria-label", rotulo);
+      b.title = rotulo;
+      b.textContent = simbolo;
+      b.addEventListener("click", function () {
+        var passo = Math.max(el.cats.clientWidth * 0.8, 120);
+        el.cats.scrollBy({ left: lado === "esquerda" ? -passo : passo, behavior: "smooth" });
+      });
+      caixa.appendChild(b);
+      return b;
+    }
+    var esq = seta("esquerda", "Ver departamentos anteriores", "‹");
+    var dir = seta("direita", "Ver mais departamentos", "›");
+    function atualizar() {
+      var fim = el.cats.scrollWidth - el.cats.clientWidth;
+      esq.hidden = el.cats.scrollLeft <= 2;
+      dir.hidden = el.cats.scrollLeft >= fim - 2;
+    }
+    el.cats.addEventListener("scroll", atualizar, { passive: true });
+    window.addEventListener("resize", atualizar);
+    return atualizar;
+  })();
+
   function montarPilulas(porCategoria) {
     var nCat = contar(dados.produtos, "categoria");
     el.cats.replaceChildren(departamento("✨", "Tudo", dados.produtos.length, !estado.cat, function () { mudar({ cat: "", sub: "" }); }));
@@ -243,6 +276,7 @@
       el.cats.appendChild(departamento(c.icone, c.nome, nCat[id] || 0, estado.cat === id,
         function () { mudar({ cat: id, sub: "" }); }));
     });
+    setas();
     el.subs.replaceChildren();
     el.subs.hidden = !estado.cat;
     if (!estado.cat) return;
