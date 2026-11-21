@@ -64,23 +64,33 @@
 }
 .busca input:focus, .busca select:focus { outline: none; }
 
-/* Lista do "Onde buscar" nas cores da marca, sem o azul do sistema (pedido do César em 21/11/2026).
-   Usa o select personalizável do Chrome 135+; navegador sem suporte continua com a lista padrão. */
+/* Listas "Onde buscar" e "Classificar por" nas cores da marca, sem o azul do sistema
+   (pedido do César em 21/11/2026). Usa o select personalizável do Chrome 135+;
+   navegador sem suporte continua com a lista padrão. */
 @supports (appearance: base-select) {
-  .busca select, .busca select::picker(select) { appearance: base-select; }
-  .busca select { display: flex; align-items: center; gap: 6px; cursor: pointer; }
-  .busca select::picker-icon { color: var(--rosa); }
-  .busca select::picker(select) {
+  .busca select, .busca select::picker(select),
+  .seletor select, .seletor select::picker(select) { appearance: base-select; }
+  .busca select, .seletor select { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+  .busca select::picker-icon, .seletor select::picker-icon { color: var(--rosa); }
+  .busca select::picker(select), .seletor select::picker(select) {
     border: 1px solid rgba(242, 136, 242, 0.5); border-radius: 12px; padding: 6px;
     background: var(--superficie); color: var(--titulo);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45); max-height: 70vh;
   }
-  .busca option { padding: 7px 12px; border-radius: 8px; cursor: pointer; }
-  .busca option::checkmark { display: none; }
-  .busca option:hover, .busca option:focus-visible, .busca option:checked {
+  .busca option, .seletor option { padding: 7px 12px; border-radius: 8px; cursor: pointer; }
+  .busca option::checkmark, .seletor option::checkmark { display: none; }
+  .busca option:hover, .busca option:focus-visible, .busca option:checked,
+  .seletor option:hover, .seletor option:focus-visible, .seletor option:checked {
     background: var(--degrade); color: #15162E; outline: none; /* azul quase preto, igual aos botões de comprar */
   }
-  .busca option:checked { font-weight: 700; }
+  .busca option:checked, .seletor option:checked { font-weight: 700; }
+}
+
+/* Filtros (Ordenar, Categoria, Tipo de produto, Marca, Preço...): ao passar o mouse, o botão
+   ganha o mesmo degradê do selecionado, com letra azul quase preta, nos dois temas
+   (pedido do César em 21/11/2026). */
+.painel-filtros .chip:hover, .painel-filtros .chip:focus-visible {
+  background: var(--degrade) border-box; border-color: transparent; color: #15162E;
 }
 .busca input::placeholder { color: var(--texto-suave); }
 .busca button {
