@@ -63,6 +63,25 @@
   font-size: 16px;
 }
 .busca input:focus, .busca select:focus { outline: none; }
+
+/* Lista do "Onde buscar" nas cores da marca, sem o azul do sistema (pedido do César em 21/11/2026).
+   Usa o select personalizável do Chrome 135+; navegador sem suporte continua com a lista padrão. */
+@supports (appearance: base-select) {
+  .busca select, .busca select::picker(select) { appearance: base-select; }
+  .busca select { display: flex; align-items: center; gap: 6px; cursor: pointer; }
+  .busca select::picker-icon { color: var(--rosa); }
+  .busca select::picker(select) {
+    border: 1px solid rgba(242, 136, 242, 0.5); border-radius: 12px; padding: 6px;
+    background: var(--superficie); color: var(--titulo);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45); max-height: 70vh;
+  }
+  .busca option { padding: 7px 12px; border-radius: 8px; cursor: pointer; }
+  .busca option::checkmark { display: none; }
+  .busca option:hover, .busca option:focus-visible, .busca option:checked {
+    background: var(--degrade); color: #15162E; outline: none; /* azul quase preto, igual aos botões de comprar */
+  }
+  .busca option:checked { font-weight: 700; }
+}
 .busca input::placeholder { color: var(--texto-suave); }
 .busca button {
   flex: 0 0 52px;
