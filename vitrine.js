@@ -78,11 +78,31 @@
 
   /* Tudo o que a busca enxerga: nome, marca, modelo, resumo, categoria, recursos,
      especificações e variações. */
+  /* Departamento principal e os extras em que o produto também se encaixa
+     (pedido do César em 21/11/2026: aspirador também aparece em Limpeza). */
+  function paresDe(p) {
+    return [[p.categoria, p.subcategoria]].concat(p.outras_categorias || []);
+  }
+  function unicos(lista) {
+    return lista.filter(function (v, i) { return lista.indexOf(v) === i; });
+  }
+  function catsDe(p) { return unicos(paresDe(p).map(function (x) { return x[0]; })); }
+  function subsDe(p, cat) {
+    return unicos(paresDe(p).filter(function (x) { return !cat || x[0] === cat; })
+      .map(function (x) { return cat ? x[1] : x[0] + "/" + x[1]; }));
+  }
+  function estaEm(p, cat, sub) {
+    return paresDe(p).some(function (x) { return x[0] === cat && (!sub || x[1] === sub); });
+  }
+
   function palavrasDo(p) {
     if (p._palavras) return p._palavras;
-    var cat = dados.categorias[p.categoria] || { nome: "", sub: {} };
     var partes = [p.nome, p.marca, p.modelo, (p.modelo || "").replace(/[^A-Za-z0-9]/g, ""), p.resumo,
-      cat.nome, cat.sub[p.subcategoria] || "", (p.recursos || []).join(" ")];
+      (p.recursos || []).join(" ")];
+    paresDe(p).forEach(function (x) {
+      var cat = dados.categorias[x[0]] || { nome: "", sub: {} };
+      partes.push(cat.nome, cat.sub[x[1]] || "");
+    });
     (p.especificacoes || []).forEach(function (par) { partes.push(par[0], par[1]); });
     (p.variacoes || []).forEach(function (v) { partes.push(v[0], v[1].join(" ")); });
     p._palavras = palavrasDe(partes.join(" "));
@@ -134,8 +154,7 @@
   var desejosAgora = [];
   function passa(p, sem) {
     if (!casaQ(p)) return false;
-    if (sem !== "cat" && estado.cat && p.categoria !== estado.cat) return false;
-    if (sem !== "cat" && sem !== "sub" && estado.sub && p.subcategoria !== estado.sub) return false;
+    if (sem !== "cat" && estado.cat && !estaEm(p, estado.cat, sem === "sub" ? "" : estado.sub)) return false;
     if (sem !== "preco" && (estado.pmin !== null || estado.pmax !== null)) {
       if (!p.preco) return false;
       if (estado.pmin !== null && p.preco.valor < estado.pmin) return false;
@@ -228,12 +247,6 @@
     return b;
   }
 
-  function contar(lista, campo) {
-    var c = {};
-    lista.forEach(function (p) { c[p[campo]] = (c[p[campo]] || 0) + 1; });
-    return c;
-  }
-
   // Setas nos cantos da faixa de departamentos (pedido do César em 21/11/2026):
   // cada clique anda quase uma tela para o lado; a seta some quando chega na ponta.
   var setas = (function () {
@@ -268,7 +281,7 @@
   })();
 
   function montarPilulas(porCategoria) {
-    var nCat = contar(dados.produtos, "categoria");
+    var nCat = contarPor(dados.produtos, catsDe);
     el.cats.replaceChildren(departamento("✨", "Tudo", dados.produtos.length, !estado.cat, function () { mudar({ cat: "", sub: "" }); }));
     // Todos os departamentos aparecem, como na Amazon; os vazios ficam apagados até ganhar a primeira descoberta.
     Object.keys(dados.categorias).forEach(function (id) {
@@ -281,7 +294,7 @@
     el.subs.hidden = !estado.cat;
     if (!estado.cat) return;
     var subs = dados.categorias[estado.cat].sub;
-    var nSub = contar(porCategoria, "subcategoria");
+    var nSub = contarPor(porCategoria, function (p) { return subsDe(p, estado.cat); });
     el.subs.appendChild(pilula("Toda a categoria", !estado.sub, function () { mudar({ sub: "" }); }));
     Object.keys(subs).forEach(function (id) {
       if (!nSub[id]) return;
@@ -478,7 +491,7 @@
       return { texto: o.nome, ativa: estado.ordem === o.id, clicar: function () { mudar({ ordem: o.id }); } };
     })));
 
-    var nCat = contarPor(filtrar("cat"), function (p) { return [p.categoria]; });
+    var nCat = contarPor(filtrar("cat"), catsDe);
     var cats = Object.keys(dados.categorias).filter(function (id) { return nCat[id] || estado.cat === id; });
     if (cats.length) {
       el.facetas.appendChild(grupoDeChips("Categoria", cats.map(function (id) {
@@ -488,7 +501,9 @@
       })));
     }
 
-    var nSub = contarPor(filtrar("sub"), function (p) { return [p.categoria + "/" + p.subcategoria]; });
+    var nSub = contarPor(filtrar("sub"), function (p) {
+      return subsDe(p, estado.cat).map(function (v) { return estado.cat ? estado.cat + "/" + v : v; });
+    });
     var subs = Object.keys(nSub);
     if (subs.length) {
       el.facetas.appendChild(grupoDeChips("Tipo de produto", subs.map(function (chave) {
@@ -649,7 +664,7 @@
   }
 
   function desenhar(manterQuantos) {
-    montarPilulas(dados.produtos.filter(function (p) { return p.categoria === estado.cat; }));
+    montarPilulas(dados.produtos.filter(function (p) { return estaEm(p, estado.cat, ""); }));
     montarOrdens();
     montarFacetas();
     var r = { lista: ordenar(filtrar()) };
@@ -662,7 +677,7 @@
     if (estado.q.trim()) texto += " para “" + estado.q.trim() + "”";
     el.contagem.textContent = texto;
     el.vazio.hidden = total > 0;
-    if (!total) el.vazio.textContent = (estado.cat && !estado.q.trim() && !contar(dados.produtos, "categoria")[estado.cat])
+    if (!total) el.vazio.textContent = (estado.cat && !estado.q.trim() && !contarPor(dados.produtos, catsDe)[estado.cat])
       ? "Ainda não temos descobertas em " + dados.categorias[estado.cat].nome + ". Em breve."
       : "Nenhuma descoberta com essa busca. Tente outra palavra ou digite o nº da descoberta que aparece no vídeo.";
     el.mais.hidden = estado.mostrados >= total;

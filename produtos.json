@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-11-21T17:22:49",
+  "gerado_em": "2026-11-21T22:59:22",
   "lojas": {
     "loja-1": {
       "rotulo": "Loja parceira",
@@ -246,6 +246,7 @@
       "loja": "loja-1",
       "categoria": "casa-e-cozinha",
       "subcategoria": "eletroportateis",
+      "outras_categorias": [],
       "resumo": "750 W, turbo e três acessórios.",
       "por_que": [
         "Nota 4,8 de 5, com 346 avaliações na página da loja.",
@@ -396,6 +397,7 @@
       "loja": "loja-1",
       "categoria": "casa-e-cozinha",
       "subcategoria": "eletroportateis",
+      "outras_categorias": [],
       "resumo": "Pronta em 30 segundos e desamassa a roupa no cabide.",
       "por_que": [
         "Nota 4,7 de 5, com 632 avaliações na página da loja.",
@@ -535,6 +537,7 @@
       "loja": "loja-1",
       "categoria": "casa-e-cozinha",
       "subcategoria": "eletroportateis",
+      "outras_categorias": [],
       "resumo": "Cesto quadrado de 4,5 litros e timer de 60 minutos.",
       "por_que": [
         "Nota 4,7 de 5, com 417 avaliações na página da loja.",
@@ -693,6 +696,7 @@
       "loja": "loja-1",
       "categoria": "casa-e-cozinha",
       "subcategoria": "eletroportateis",
+      "outras_categorias": [],
       "resumo": "Jarra de 1,5 litro e dois cones, para laranja e limão.",
       "por_que": [
         "Nota 4,5 de 5, com 615 avaliações na página da loja.",
@@ -822,6 +826,12 @@
       "loja": "loja-1",
       "categoria": "casa-e-cozinha",
       "subcategoria": "eletroportateis",
+      "outras_categorias": [
+        [
+          "casa-e-cozinha",
+          "panelas"
+        ]
+      ],
       "resumo": "6 xícaras, acabamento de inox e arroz quente por 8 horas.",
       "por_que": [
         "Nota 4,9 de 5, com 1.804 avaliações na página da loja.",
@@ -964,6 +974,7 @@
       "loja": "loja-1",
       "categoria": "casa-e-cozinha",
       "subcategoria": "eletroportateis",
+      "outras_categorias": [],
       "resumo": "Mixer e blender com garrafinha para levar.",
       "por_que": [
         "Nota 4,7 de 5, com 212 avaliações na página da loja.",
@@ -1122,6 +1133,12 @@
       "loja": "loja-1",
       "categoria": "eletrodomesticos",
       "subcategoria": "aspiradores",
+      "outras_categorias": [
+        [
+          "casa",
+          "limpeza"
+        ]
+      ],
       "resumo": "Aspira pó, sujeira molhada e água, e ainda sopra.",
       "por_que": [
         "Nota 4,6 de 5, com 13.960 avaliações na página da loja.",
@@ -1292,6 +1309,7 @@
       "loja": "loja-1",
       "categoria": "casa-e-cozinha",
       "subcategoria": "eletroportateis",
+      "outras_categorias": [],
       "resumo": "500 W, 4 velocidades e turbo, e vira portátil.",
       "por_que": [
         "Nota 4,8 de 5, com 1.656 avaliações na página da loja.",
@@ -1433,6 +1451,7 @@
       "loja": "loja-1",
       "categoria": "casa-e-cozinha",
       "subcategoria": "eletroportateis",
+      "outras_categorias": [],
       "resumo": "Liga só de encostar a fruta e faz até 4 copos.",
       "por_que": [
         "Nota 4,6 de 5, com 5.741 avaliações na página da loja.",
@@ -1553,6 +1572,12 @@
       "loja": "loja-1",
       "categoria": "casa-e-cozinha",
       "subcategoria": "eletroportateis",
+      "outras_categorias": [
+        [
+          "casa-e-cozinha",
+          "panelas"
+        ]
+      ],
       "resumo": "Arroz soltinho e quente por até 8 horas.",
       "por_que": [
         "Nota 4,8 de 5, com 6.389 avaliações na página da loja.",
@@ -1695,6 +1720,7 @@
       "loja": "loja-1",
       "categoria": "casa-e-cozinha",
       "subcategoria": "eletroportateis",
+      "outras_categorias": [],
       "resumo": "1200 W e abre 180° para virar chapa dupla.",
       "por_que": [
         "Nota 4,8 de 5, com 154 avaliações na página da loja.",
@@ -1843,6 +1869,7 @@
       "loja": "loja-1",
       "categoria": "casa-e-cozinha",
       "subcategoria": "eletroportateis",
+      "outras_categorias": [],
       "resumo": "Pão pronto com um toque: 19 programas e timer de 15 horas.",
       "por_que": [
         "Nota 4,6 de 5, com 190 avaliações na página da loja.",
@@ -1989,6 +2016,7 @@
       "loja": "loja-1",
       "categoria": "eletrodomesticos",
       "subcategoria": "bebedouros",
+      "outras_categorias": [],
       "resumo": "Água natural, fria ou gelada, e enche o copo 4 vezes mais rápido.",
       "por_que": [
         "Nota 4,7 de 5, com 14.172 avaliações na página da loja.",
@@ -2145,6 +2173,7 @@
       "loja": "loja-1",
       "categoria": "ferramentas",
       "subcategoria": "ferramentas-eletricas",
+      "outras_categorias": [],
       "resumo": "450 W, corte inclinado até 45° e 60 mm em madeira.",
       "por_que": [
         "Nota 4,5 de 5, com 191 avaliações na página da loja.",
@@ -2284,6 +2313,7 @@
       "loja": "loja-1",
       "categoria": "ferramentas",
       "subcategoria": "ferramentas-eletricas",
+      "outras_categorias": [],
       "resumo": "Sem fio, 12V, impacto e 54 acessórios.",
       "por_que": [
         "Nota 4,6 de 5, com 1.278 avaliações na página da loja.",
@@ -2427,6 +2457,12 @@
       "loja": "loja-1",
       "categoria": "ferramentas",
       "subcategoria": "ferramentas-eletricas",
+      "outras_categorias": [
+        [
+          "ferramentas",
+          "construcao"
+        ]
+      ],
       "resumo": "900 W para furar e quebrar concreto.",
       "por_que": [
         "Nota 4,7 de 5, com 245 avaliações na página da loja.",
@@ -2585,6 +2621,7 @@
       "loja": "loja-1",
       "categoria": "casa-e-cozinha",
       "subcategoria": "panelas",
+      "outras_categorias": [],
       "resumo": "5,4 litros, antiaderente de cerâmica e fundo de indução.",
       "por_que": [
         "Nota 4,8 de 5, com 788 avaliações na página da loja.",
@@ -2710,6 +2747,7 @@
       "loja": "loja-1",
       "categoria": "casa-e-cozinha",
       "subcategoria": "utensilios",
+      "outras_categorias": [],
       "resumo": "Inox, 2,7 litros e apito que avisa quando ferve.",
       "por_que": [
         "Nota 4,8 de 5, com 7.401 avaliações na página da loja.",
@@ -2821,6 +2859,7 @@
       "loja": "loja-1",
       "categoria": "casa-e-cozinha",
       "subcategoria": "utensilios",
+      "outras_categorias": [],
       "resumo": "3 tigelas de inox com tampa, de 1,4 a 2,6 litros.",
       "por_que": [
         "Nota 5 de 5, com 1.138 avaliações na página da loja.",
@@ -2967,6 +3006,12 @@
       "loja": "loja-1",
       "categoria": "ferramentas",
       "subcategoria": "ferramentas-eletricas",
+      "outras_categorias": [
+        [
+          "ferramentas",
+          "construcao"
+        ]
+      ],
       "resumo": "550 W, impacto e trava de gatilho.",
       "por_que": [
         "Nota 4,6 de 5, com 1.138 avaliações na página da loja.",
@@ -3109,6 +3154,12 @@
       "loja": "loja-1",
       "categoria": "ferramentas",
       "subcategoria": "ferramentas-eletricas",
+      "outras_categorias": [
+        [
+          "ferramentas",
+          "construcao"
+        ]
+      ],
       "resumo": "650 W, impacto e maleta com 11 acessórios.",
       "por_que": [
         "Nota 4,5 de 5, com 1.418 avaliações na página da loja.",
@@ -3271,6 +3322,7 @@
       "loja": "loja-1",
       "categoria": "casa-e-cozinha",
       "subcategoria": "utensilios",
+      "outras_categorias": [],
       "resumo": "10 potes de tamanhos diferentes, com vedação dupla.",
       "por_que": [
         "Nota 4,9 de 5, com 15.892 avaliações na página da loja.",
@@ -3389,6 +3441,7 @@
       "loja": "loja-1",
       "categoria": "ferramentas",
       "subcategoria": "ferramentas-eletricas",
+      "outras_categorias": [],
       "resumo": "Sem fio, 21V, 45 Nm e função impacto.",
       "por_que": [
         "Nota 4,7 de 5, com 664 avaliações na página da loja.",
@@ -3555,6 +3608,12 @@
       "loja": "loja-1",
       "categoria": "ferramentas",
       "subcategoria": "ferramentas-eletricas",
+      "outras_categorias": [
+        [
+          "ferramentas",
+          "construcao"
+        ]
+      ],
       "resumo": "700 W com impacto e maleta cheia de acessórios.",
       "por_que": [
         "Nota 4,6 de 5, com 1.107 avaliações na página da loja.",
@@ -3753,6 +3812,12 @@
       "loja": "loja-1",
       "categoria": "ferramentas",
       "subcategoria": "ferramentas-eletricas",
+      "outras_categorias": [
+        [
+          "ferramentas",
+          "construcao"
+        ]
+      ],
       "resumo": "1300 W e 12.000 rpm para cortar piso e azulejo.",
       "por_que": [
         "Nota 4,5 de 5, com 762 avaliações na página da loja.",
@@ -3887,6 +3952,7 @@
       "loja": "loja-1",
       "categoria": "casa-e-cozinha",
       "subcategoria": "panelas",
+      "outras_categorias": [],
       "resumo": "Antiaderente de cerâmica e fundo para fogão de indução.",
       "por_que": [
         "Nota 4,8 de 5, com 13.550 avaliações na página da loja.",
@@ -4030,6 +4096,7 @@
       "loja": "loja-1",
       "categoria": "ferramentas",
       "subcategoria": "ferramentas-eletricas",
+      "outras_categorias": [],
       "resumo": "Sem fio, 12V, 18 níveis de torque e luz de LED.",
       "por_que": [
         "Nota 4,8 de 5, com 7.498 avaliações na página da loja.",
@@ -4185,6 +4252,12 @@
       "loja": "loja-1",
       "categoria": "casa",
       "subcategoria": "limpeza",
+      "outras_categorias": [
+        [
+          "casa",
+          "organizacao"
+        ]
+      ],
       "resumo": "Inox escovado, pedal e balde que sai para trocar o saco.",
       "por_que": [
         "Nota 4,9 de 5, com 615 avaliações na página da loja.",
@@ -4297,6 +4370,12 @@
       "loja": "loja-1",
       "categoria": "ferramentas",
       "subcategoria": "ferramentas-eletricas",
+      "outras_categorias": [
+        [
+          "ferramentas",
+          "construcao"
+        ]
+      ],
       "resumo": "700 W, função impacto e fura concreto até 10 mm.",
       "por_que": [
         "Nota 4,6 de 5, com 432 avaliações na página da loja.",
@@ -4461,6 +4540,7 @@
       "loja": "loja-1",
       "categoria": "ferramentas",
       "subcategoria": "ferramentas-eletricas",
+      "outras_categorias": [],
       "resumo": "Sem fio, 12V, com maleta e 13 acessórios.",
       "por_que": [
         "Nota 4,7 de 5, com 3.550 avaliações na página da loja.",
@@ -4604,6 +4684,7 @@
       "loja": "loja-1",
       "categoria": "casa-e-cozinha",
       "subcategoria": "eletroportateis",
+      "outras_categorias": [],
       "resumo": "Mixer, mini processador e batedor.",
       "por_que": [
         "Nota 4,81 de 5, com 3.309 avaliações na página da loja.",
@@ -4738,6 +4819,7 @@
       "loja": "loja-1",
       "categoria": "casa-e-cozinha",
       "subcategoria": "eletroportateis",
+      "outras_categorias": [],
       "resumo": "12 velocidades e 4 batedores.",
       "por_que": [
         "Nota 4,79 de 5, com 1.014 avaliações na página da loja.",
@@ -4881,6 +4963,7 @@
       "loja": "loja-1",
       "categoria": "casa-e-cozinha",
       "subcategoria": "eletroportateis",
+      "outras_categorias": [],
       "resumo": "Liquidificador e processador num aparelho só.",
       "por_que": [
         "Nota 4,61 de 5, com 2.515 avaliações na página da loja.",
@@ -5027,6 +5110,12 @@
       "loja": "loja-1",
       "categoria": "casa-e-cozinha",
       "subcategoria": "eletroportateis",
+      "outras_categorias": [
+        [
+          "casa-e-cozinha",
+          "panelas"
+        ]
+      ],
       "resumo": "10 programas prontos e função manter aquecido.",
       "por_que": [
         "Nota 4,85 de 5, com 1.540 avaliações na página da loja.",
@@ -5177,6 +5266,7 @@
       "loja": "loja-1",
       "categoria": "casa-e-cozinha",
       "subcategoria": "eletroportateis",
+      "outras_categorias": [],
       "resumo": "Cesto quadrado de 5 litros e timer de 60 minutos.",
       "por_que": [
         "Nota 4,74 de 5, com 10.749 avaliações na página da loja.",
@@ -5331,6 +5421,7 @@
       "loja": "loja-1",
       "categoria": "ar-e-ventilacao",
       "subcategoria": "ventiladores",
+      "outras_categorias": [],
       "resumo": "Vento direcionado e grade que desmonta inteira.",
       "por_que": [
         "Nota 4,9 de 5, com 1.554 avaliações na página da loja.",
@@ -5505,6 +5596,7 @@
       "loja": "loja-1",
       "categoria": "ar-e-ventilacao",
       "subcategoria": "ventiladores",
+      "outras_categorias": [],
       "resumo": "8 pás e funcionamento silencioso.",
       "por_que": [
         "Nota 4,79 de 5, com 5.430 avaliações na página da loja.",
@@ -5658,6 +5750,7 @@
       "loja": "loja-1",
       "categoria": "ar-e-ventilacao",
       "subcategoria": "ventiladores",
+      "outras_categorias": [],
       "resumo": "Altura que regula e funcionamento silencioso.",
       "por_que": [
         "Nota 4,76 de 5, com 7.128 avaliações na página da loja.",
@@ -5812,6 +5905,7 @@
       "loja": "loja-1",
       "categoria": "ar-e-ventilacao",
       "subcategoria": "ventiladores",
+      "outras_categorias": [],
       "resumo": "De mesa ou de parede, com 6 pás e 3 velocidades.",
       "por_que": [
         "Nota 4,76 de 5, com 4.695 avaliações na página da loja.",
@@ -5963,6 +6057,7 @@
       "loja": "loja-1",
       "categoria": "casa-e-cozinha",
       "subcategoria": "eletroportateis",
+      "outras_categorias": [],
       "resumo": "Descongela, reaquece e tosta do seu jeito.",
       "por_que": [
         "Nota 4,86 de 5, com 1.127 avaliações na página da loja.",
@@ -6086,6 +6181,12 @@
       "loja": "loja-1",
       "categoria": "casa-e-cozinha",
       "subcategoria": "eletroportateis",
+      "outras_categorias": [
+        [
+          "casa-e-cozinha",
+          "panelas"
+        ]
+      ],
       "resumo": "6 litros, 14 receitas prontas e acabamento em inox.",
       "por_que": [
         "Nota 4,86 de 5, com 1.354 avaliações na página da loja.",
@@ -6238,6 +6339,7 @@
       "loja": "loja-1",
       "categoria": "casa-e-cozinha",
       "subcategoria": "eletroportateis",
+      "outras_categorias": [],
       "resumo": "Bate direto na jarra e você leva com você.",
       "por_que": [
         "Nota 4,67 de 5, com 1.214 avaliações na página da loja.",
@@ -6377,6 +6479,7 @@
       "loja": "loja-1",
       "categoria": "casa-e-cozinha",
       "subcategoria": "eletroportateis",
+      "outras_categorias": [],
       "resumo": "Ferve rápido e desliga sozinha.",
       "por_que": [
         "Nota 4,65 de 5, com 666 avaliações na página da loja.",
@@ -6528,6 +6631,7 @@
       "loja": "loja-1",
       "categoria": "casa-e-cozinha",
       "subcategoria": "eletroportateis",
+      "outras_categorias": [],
       "resumo": "Compacta, aquece rápido e desliga sozinha.",
       "por_que": [
         "Nota 4,85 de 5, com 1.009 avaliações na página da loja.",
@@ -6666,6 +6770,7 @@
       "loja": "loja-1",
       "categoria": "casa-e-cozinha",
       "subcategoria": "eletroportateis",
+      "outras_categorias": [],
       "resumo": "Copo de 3 litros, 12 velocidades e autolimpeza.",
       "por_que": [
         "Nota 4,63 de 5, com 25.078 avaliações na página da loja.",
@@ -6810,6 +6915,7 @@
       "loja": "loja-1",
       "categoria": "casa-e-cozinha",
       "subcategoria": "eletroportateis",
+      "outras_categorias": [],
       "resumo": "Ferve 2 litros e desliga sozinha.",
       "por_que": [
         "Nota 4,63 de 5, com 575 avaliações na página da loja.",
@@ -6952,6 +7058,7 @@
       "loja": "loja-1",
       "categoria": "casa-e-cozinha",
       "subcategoria": "eletroportateis",
+      "outras_categorias": [],
       "resumo": "12 velocidades, turbo e 3 batedores.",
       "por_que": [
         "Nota 4,78 de 5, com 2.686 avaliações na página da loja.",
@@ -7102,6 +7209,12 @@
       "loja": "loja-1",
       "categoria": "casa-e-cozinha",
       "subcategoria": "eletroportateis",
+      "outras_categorias": [
+        [
+          "casa-e-cozinha",
+          "panelas"
+        ]
+      ],
       "resumo": "14 receitas prontas no painel e início programado.",
       "por_que": [
         "Nota 4,79 de 5, com 7.490 avaliações na página da loja.",
@@ -7254,6 +7367,12 @@
       "loja": "loja-1",
       "categoria": "eletrodomesticos",
       "subcategoria": "aspiradores",
+      "outras_categorias": [
+        [
+          "casa",
+          "limpeza"
+        ]
+      ],
       "resumo": "Vertical e de mão, com reservatório de 1,2 litro.",
       "por_que": [
         "Nota 4,79 de 5, com 11.068 avaliações na página da loja.",
@@ -7412,6 +7531,7 @@
       "loja": "loja-1",
       "categoria": "casa-e-cozinha",
       "subcategoria": "eletroportateis",
+      "outras_categorias": [],
       "resumo": "Chapas antiaderentes que aquecem dos dois lados.",
       "por_que": [
         "Nota 4,84 de 5, com 678 avaliações na página da loja.",
@@ -7559,6 +7679,7 @@
       "loja": "loja-1",
       "categoria": "casa-e-cozinha",
       "subcategoria": "eletroportateis",
+      "outras_categorias": [],
       "resumo": "250 W, 2 cones e copo de 1 litro.",
       "por_que": [
         "Nota 4,74 de 5, com 3.117 avaliações na página da loja.",
@@ -7683,6 +7804,12 @@
       "loja": "loja-1",
       "categoria": "eletrodomesticos",
       "subcategoria": "aspiradores",
+      "outras_categorias": [
+        [
+          "casa",
+          "limpeza"
+        ]
+      ],
       "resumo": "Filtro ciclone, 1,5 litro e 5 metros de alcance.",
       "por_que": [
         "Nota 4,75 de 5, com 6.001 avaliações na página da loja.",
@@ -7834,6 +7961,7 @@
       "loja": "loja-1",
       "categoria": "casa-e-cozinha",
       "subcategoria": "eletroportateis",
+      "outras_categorias": [],
       "resumo": "12 velocidades, 3 batedores e ventosas na base.",
       "por_que": [
         "Nota 4,69 de 5, com 3.110 avaliações na página da loja.",
@@ -7990,6 +8118,7 @@
       "loja": "loja-1",
       "categoria": "casa-e-cozinha",
       "subcategoria": "eletroportateis",
+      "outras_categorias": [],
       "resumo": "Dupla rotação e cone extra.",
       "por_que": [
         "Nota 4,63 de 5, com 5.741 avaliações na página da loja.",
@@ -8120,6 +8249,12 @@
       "loja": "loja-1",
       "categoria": "eletrodomesticos",
       "subcategoria": "aspiradores",
+      "outras_categorias": [
+        [
+          "casa",
+          "limpeza"
+        ]
+      ],
       "resumo": "Filtro HEPA e uso como aspirador de mão.",
       "por_que": [
         "Nota 4,85 de 5, com 2.782 avaliações na página da loja.",
@@ -8282,6 +8417,12 @@
       "loja": "loja-1",
       "categoria": "eletrodomesticos",
       "subcategoria": "aspiradores",
+      "outras_categorias": [
+        [
+          "casa",
+          "limpeza"
+        ]
+      ],
       "resumo": "Vira aspirador de mão e tem fio de 6 metros.",
       "por_que": [
         "Nota 4,8 de 5, com 2.150 avaliações na página da loja.",
@@ -8438,6 +8579,7 @@
       "loja": "loja-1",
       "categoria": "eletrodomesticos",
       "subcategoria": "bebedouros",
+      "outras_categorias": [],
       "resumo": "Água gelada por compressor, de 5 a 15 °C.",
       "por_que": [
         "Nota 4,75 de 5, com 10.344 avaliações na página da loja.",
@@ -8553,6 +8695,7 @@
       "loja": "loja-1",
       "categoria": "casa-e-cozinha",
       "subcategoria": "eletroportateis",
+      "outras_categorias": [],
       "resumo": "1400 W, 15 velocidades e copo de 3,2 litros.",
       "por_que": [
         "Nota 4,66 de 5, com 15.391 avaliações na página da loja.",
@@ -8707,6 +8850,12 @@
       "loja": "loja-1",
       "categoria": "bebes",
       "subcategoria": "carrinhos",
+      "outras_categorias": [
+        [
+          "automotivo",
+          "acessorios-carro"
+        ]
+      ],
       "resumo": "Do recém-nascido aos 36 kg, em 3 posições.",
       "por_que": [
         "Nota 4,81 de 5, com 1.800 avaliações na página da loja.",
@@ -8851,6 +9000,7 @@
       "loja": "loja-1",
       "categoria": "ar-e-ventilacao",
       "subcategoria": "ventiladores",
+      "outras_categorias": [],
       "resumo": "8 pás, 40 cm, 3 velocidades e funcionamento silencioso.",
       "por_que": [
         "Nota 4,81 de 5, com quase 11 mil avaliações na página da loja.",
@@ -9002,10 +9152,6 @@
         "Marca": [
           "Mondial"
         ],
-        "Voltagem": [
-          "110V",
-          "220V"
-        ],
         "Cor": [
           "Preto e prata"
         ],
@@ -9026,6 +9172,7 @@
       "loja": "loja-1",
       "categoria": "brinquedos",
       "subcategoria": "veiculos-infantis",
+      "outras_categorias": [],
       "resumo": "Passeio com haste a partir de 9 meses, depois vira pedal.",
       "por_que": [
         "Nota 4,88 de 5, com mais de 13 mil avaliações na página da loja.",
@@ -9175,6 +9322,7 @@
       "loja": "loja-1",
       "categoria": "ar-e-ventilacao",
       "subcategoria": "ventiladores",
+      "outras_categorias": [],
       "resumo": "6 pás, 3 velocidades e tamanho para mesa pequena.",
       "por_que": [
         "Nota 4,7 de 5, com mais de 19 mil avaliações na página da loja.",
@@ -9321,10 +9469,6 @@
         "Marca": [
           "Mondial"
         ],
-        "Voltagem": [
-          "110V",
-          "220V"
-        ],
         "Cor": [
           "Preto"
         ],
@@ -9342,6 +9486,7 @@
       "loja": "loja-1",
       "categoria": "eletrodomesticos",
       "subcategoria": "bebedouros",
+      "outras_categorias": [],
       "resumo": "Água gelada e natural, para galão de 20 litros.",
       "por_que": [
         "Nota 4,74 de 5, com mais de 21 mil avaliações na página da loja.",
@@ -9464,10 +9609,6 @@
         "Marca": [
           "Esmaltec"
         ],
-        "Voltagem": [
-          "110V",
-          "220V"
-        ],
         "Cor": [
           "Preto"
         ]
@@ -9482,6 +9623,12 @@
       "loja": "loja-1",
       "categoria": "eletrodomesticos",
       "subcategoria": "aspiradores",
+      "outras_categorias": [
+        [
+          "casa",
+          "limpeza"
+        ]
+      ],
       "resumo": "Aspira pó e água, e também sopra.",
       "por_que": [
         "Nota 4,72 de 5, com mais de 26 mil avaliações na página da loja.",
@@ -9633,10 +9780,6 @@
         "Marca": [
           "Electrolux"
         ],
-        "Voltagem": [
-          "110V",
-          "220V"
-        ],
         "Cor": [
           "Preto e amarelo"
         ],
@@ -9654,6 +9797,12 @@
       "loja": "loja-1",
       "categoria": "eletrodomesticos",
       "subcategoria": "aspiradores",
+      "outras_categorias": [
+        [
+          "casa",
+          "limpeza"
+        ]
+      ],
       "resumo": "Vertical e portátil, 1450 W e filtro HEPA.",
       "por_que": [
         "Nota 4,76 de 5, com quase 28 mil avaliações na página da loja.",
@@ -9806,10 +9955,6 @@
         "Marca": [
           "Electrolux"
         ],
-        "Voltagem": [
-          "110V",
-          "220V"
-        ],
         "Cor": [
           "Azul (Denim Blue)"
         ],
@@ -9827,6 +9972,12 @@
       "loja": "loja-1",
       "categoria": "eletrodomesticos",
       "subcategoria": "aspiradores",
+      "outras_categorias": [
+        [
+          "casa",
+          "limpeza"
+        ]
+      ],
       "resumo": "Vertical que vira portátil, 1100 W e filtro lavável.",
       "por_que": [
         "Nota 4,84 de 5, com mais de 31 mil avaliações na página da loja.",
@@ -9978,10 +10129,6 @@
         "Marca": [
           "Mondial"
         ],
-        "Voltagem": [
-          "110V",
-          "220V"
-        ],
         "Cor": [
           "Vermelho e preto"
         ],
@@ -9999,6 +10146,7 @@
       "loja": "loja-1",
       "categoria": "casa-e-cozinha",
       "subcategoria": "eletroportateis",
+      "outras_categorias": [],
       "resumo": "Copo de 2,2 litros, 3 velocidades e filtro para sucos.",
       "por_que": [
         "Nota 4,73 de 5, com quase 55 mil avaliações na página da loja.",
@@ -10145,10 +10293,6 @@
         "Marca": [
           "Mondial"
         ],
-        "Voltagem": [
-          "110V",
-          "220V"
-        ],
         "Cor": [
           "Preto"
         ],
@@ -10166,6 +10310,7 @@
       "loja": "loja-1",
       "categoria": "celulares",
       "subcategoria": "smartphones",
+      "outras_categorias": [],
       "resumo": "Tela de 6,1\", câmera de 48 MP e Dynamic Island.",
       "por_que": [
         "Nota 4,9 de 5, com mais de 9 mil avaliações na página da loja.",
@@ -10330,6 +10475,7 @@
       "loja": "loja-1",
       "categoria": "celulares",
       "subcategoria": "smartphones",
+      "outras_categorias": [],
       "resumo": "Tela de 6,3\" com 120 Hz, duas câmeras de 48 MP e 512 GB.",
       "por_que": [
         "Nota 4,9 de 5, com quase 1.500 avaliações na página da loja.",
@@ -10502,6 +10648,7 @@
       "loja": "loja-1",
       "categoria": "celulares",
       "subcategoria": "smartphones",
+      "outras_categorias": [],
       "resumo": "Tela de 6,1\", câmera de 48 MP e resistente a água.",
       "por_que": [
         "Nota 4,9 de 5, com quase 8 mil avaliações na página da loja.",
@@ -10668,6 +10815,7 @@
       "loja": "loja-1",
       "categoria": "ar-e-ventilacao",
       "subcategoria": "ventiladores",
+      "outras_categorias": [],
       "resumo": "6 pás, 3 velocidades e grade que sai para limpar.",
       "por_que": [
         "Nota 4,74 de 5, com mais de 50 mil avaliações na página da loja.",
@@ -10820,10 +10968,6 @@
       "facetas": {
         "Marca": [
           "Mondial"
-        ],
-        "Voltagem": [
-          "110V",
-          "220V"
         ],
         "Cor": [
           "Preto e prata"
